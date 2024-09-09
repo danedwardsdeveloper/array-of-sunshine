@@ -1,9 +1,19 @@
 import glob from 'fast-glob';
 
-interface Article {
+type Writer = 'Dan Edwards' | 'Google Gemini';
+
+export interface Article {
 	title: string;
 	description: string;
-	author: string;
+	writer: Writer;
+	tags: string;
+	keywords: string;
+
+	/** Landscape meta image exactly 1,200 x 675px
+	 * No file extension or folder details
+	 * Example: 'featured-image'
+	 */
+	featuredImage: string;
 
 	/**Year-Month-Day: '2024-09-04' */
 	date: string;

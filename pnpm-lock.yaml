@@ -14,9 +14,12 @@ importers:
       '@mdx-js/loader':
         specifier: ^3.0.1
         version: 3.0.1(webpack@5.94.0)
+      '@mdx-js/react':
+        specifier: ^3.0.1
+        version: 3.0.1(@types/react@18.2.55)(react@18.2.0)
       '@next/mdx':
         specifier: ^14.2.8
-        version: 14.2.8(@mdx-js/loader@3.0.1(webpack@5.94.0))(@mdx-js/react@2.3.0(react@18.2.0))
+        version: 14.2.8(@mdx-js/loader@3.0.1(webpack@5.94.0))(@mdx-js/react@3.0.1(@types/react@18.2.55)(react@18.2.0))
       '@tailwindcss/postcss':
         specifier: 4.0.0-alpha.13
         version: 4.0.0-alpha.13(postcss@8.4.45)
@@ -68,13 +71,13 @@ importers:
       sugar-high:
         specifier: ^0.6.0
         version: 0.6.1
-      typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
     devDependencies:
       '@flydotio/dockerfile':
         specifier: ^0.5.8
         version: 0.5.8
+      '@mdx-js/mdx':
+        specifier: ^3.0.1
+        version: 3.0.1
       '@tailwindcss/aspect-ratio':
         specifier: ^0.4.2
         version: 0.4.2(tailwindcss@3.4.10)
@@ -102,6 +105,9 @@ importers:
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.10
+      typescript:
+        specifier: ^5.5.4
+        version: 5.5.4
       vitest:
         specifier: ^2.0.5
         version: 2.0.5(@types/node@20.11.17)(lightningcss@1.26.0)(terser@5.31.6)
@@ -422,6 +428,12 @@ packages:
   '@mdx-js/react@2.3.0':
     resolution: {integrity: sha512-zQH//gdOmuu7nt2oJR29vFhDv88oGPmVw6BggmrHeMI+xgEkp1B2dX9/bMBSYtK0dyLX/aOmesKS09g222K1/g==}
     peerDependencies:
+      react: '>=16'
+
+  '@mdx-js/react@3.0.1':
+    resolution: {integrity: sha512-9ZrPIU4MGf6et1m1ov3zKf+q9+deetI51zprKB1D/z3NOb+rUxxtEl3mCjW5wTGh6VhRdwPueh1oRzi6ezkA8A==}
+    peerDependencies:
+      '@types/react': '>=16'
       react: '>=16'
 
   '@next/env@14.2.8':
@@ -3155,14 +3167,20 @@ snapshots:
       '@types/react': 18.2.55
       react: 18.2.0
 
+  '@mdx-js/react@3.0.1(@types/react@18.2.55)(react@18.2.0)':
+    dependencies:
+      '@types/mdx': 2.0.13
+      '@types/react': 18.2.55
+      react: 18.2.0
+
   '@next/env@14.2.8': {}
 
-  '@next/mdx@14.2.8(@mdx-js/loader@3.0.1(webpack@5.94.0))(@mdx-js/react@2.3.0(react@18.2.0))':
+  '@next/mdx@14.2.8(@mdx-js/loader@3.0.1(webpack@5.94.0))(@mdx-js/react@3.0.1(@types/react@18.2.55)(react@18.2.0))':
     dependencies:
       source-map: 0.7.4
     optionalDependencies:
       '@mdx-js/loader': 3.0.1(webpack@5.94.0)
-      '@mdx-js/react': 2.3.0(react@18.2.0)
+      '@mdx-js/react': 3.0.1(@types/react@18.2.55)(react@18.2.0)
 
   '@next/swc-darwin-arm64@14.2.8':
     optional: true

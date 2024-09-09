@@ -1,5 +1,5 @@
-import { getBlogPosts } from 'src/library/oldUtils';
-import { baseUrl } from 'src/library/environment';
+import { getBlogPosts } from '@/library/oldUtils';
+import { baseUrl } from '@/library/environment';
 
 export default async function sitemap() {
 	let blogs = getBlogPosts().map((post) => ({
