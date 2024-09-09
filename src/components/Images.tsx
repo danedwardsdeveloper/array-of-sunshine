@@ -19,10 +19,9 @@ export function FeaturedImage({ src, alt, classes }: ImageProps) {
 				alt={alt}
 				width={576}
 				height={324}
-				layout="responsive"
 				quality={100}
 				loading="eager"
-				className={clsx(`rounded-md`, classes)}
+				className={clsx(`rounded-md w-full h-auto`, classes)}
 			/>
 		</div>
 	);
@@ -37,10 +36,9 @@ export function AdditionalImage({ src, alt, classes }: ImageProps) {
 				// Max rendered width is 576px
 				width={100}
 				height={100}
-				layout="responsive"
 				quality={100}
 				loading="eager"
-				className={clsx(`rounded-md`, classes)}
+				className={clsx(`rounded-md w-full h-auto`, classes)}
 			/>
 		</div>
 	);
