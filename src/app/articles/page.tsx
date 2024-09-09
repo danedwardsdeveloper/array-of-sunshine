@@ -26,7 +26,8 @@ export default async function ArticlesList() {
 						href={`/articles/${article.slug}`}
 					>
 						<div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-							<p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
+							{/* 150px might seem too wide but it accommodates wide dates like '23 September 2024' and allows the article titles to line up nicely*/}
+							<p className="text-neutral-600 dark:text-neutral-400 w-[150px] tabular-nums">
 								{formatDate(article.date)}
 							</p>
 							<p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
