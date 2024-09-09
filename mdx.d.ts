@@ -18,3 +18,5 @@ declare module '*.mdx' {
 	const MDXComponent: (props: any) => ReactNode;
 	export default MDXComponent;
 }
+
+// This file is supposed to enable IDE type support for the .mdx articles but it doesn't work
