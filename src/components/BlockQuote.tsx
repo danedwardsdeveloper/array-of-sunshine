@@ -1,4 +1,4 @@
-export default function Blockquote({
+export default function BlockQuote({
 	children,
 	...props
 }: React.HTMLAttributes<HTMLQuoteElement>) {
