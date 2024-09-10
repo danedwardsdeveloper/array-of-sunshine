@@ -20,13 +20,6 @@ export default function Page() {
 				>
 					resume
 				</ExternalLink>
-				, and subscribe to the{' '}
-				<InternalLink
-					href="/newsletter"
-					ariaLabel={`Subscribe to the Array of Sunshine newsletter`}
-				>
-					newsletter
-				</InternalLink>
 				.
 			</p>
 			<div className="my-8">

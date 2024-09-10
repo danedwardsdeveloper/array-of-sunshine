@@ -1,4 +1,4 @@
-import './styles/global.tailwind.css';
+import './global.tailwind.css';
 import Script from 'next/script';
 import type { Metadata, Viewport } from 'next';
 
@@ -74,9 +74,22 @@ export default function RootLayout({
 				GeistMono.variable
 			)}
 		>
-			<body className="antialiased max-w-xl mx-4 mt-8 lg:mx-auto">
+			<body
+				className={clsx(
+					'antialiased',
+					'max-w-xl',
+					'mx-4 lg:mx-auto',
+					'mt-8'
+				)}
+			>
 				<Providers>
-					<main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
+					<main
+						className={clsx(
+							'flex-auto flex flex-col min-w-0',
+							' mt-6',
+							'md:px-0'
+						)}
+					>
 						<Navbar />
 						{children}
 						<Footer />

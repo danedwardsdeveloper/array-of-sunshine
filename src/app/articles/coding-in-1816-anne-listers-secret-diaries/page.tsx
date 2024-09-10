@@ -1,7 +1,8 @@
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { type IArticle } from '@/library/articles';
-import Content from '@/components/Content';
 import { ExternalLink } from '@/components/Links';
+import Paragraph from '@/components/Paragraph';
+import { Heading2, Heading3, Heading4 } from '@/components/Headings';
 
 export const article: IArticle = {
 	writer: `Dan Edwards`,
@@ -20,38 +21,35 @@ export const metadata = {
 
 export default function Article() {
 	return (
-		<>
-			<ArticleLayout article={article}>
-				<Content.Paragraph>
-					As a big fan of{' '}
-					<ExternalLink
-						ariaLabel="Happy Halley, MetaCritic"
-						href="https://www.metacritic.com/tv/happy-valley/"
-					>
-						Happy Valley
-					</ExternalLink>
-					, I recently visited the gorgeous West Yorkshire market town of
-					Hebden Bridge, hoping to see some of the streets where my
-					favourite police drama was filmed. I had forgotten that it is
-					also the the{' '}
-					<ExternalLink
-						ariaLabel="BBC News | Hebden Bridge is the UK's lesbian capital"
-						href="https://www.bbc.co.uk/news/magazine-16962898"
-					>
-						UK's lesbian capital
-					</ExternalLink>
-					, so of course, when I went into its delightful{' '}
-					<ExternalLink
-						href="https://bookcasehebden.wordpress.com/"
-						ariaLabel="Delightful independent bookshop in Hebden Bridge"
-					>
-						independent bookshop
-					</ExternalLink>
-					, copies of Anne Lister's Secret Diaries were prominently on
-					display.
-				</Content.Paragraph>
-			</ArticleLayout>
-		</>
+		<ArticleLayout article={article}>
+			<Paragraph>
+				As a big fan of{' '}
+				<ExternalLink
+					ariaLabel="Happy Halley, MetaCritic"
+					href="https://www.metacritic.com/tv/happy-valley/"
+				>
+					Happy Valley
+				</ExternalLink>
+				, I recently visited the gorgeous West Yorkshire market town of
+				Hebden Bridge, hoping to see some of the streets where my favourite
+				police drama was filmed. I had forgotten that it is also the the{' '}
+				<ExternalLink
+					ariaLabel="BBC News | Hebden Bridge is the UK's lesbian capital"
+					href="https://www.bbc.co.uk/news/magazine-16962898"
+				>
+					UK's lesbian capital
+				</ExternalLink>
+				, so of course, when I went into its delightful{' '}
+				<ExternalLink
+					href="https://bookcasehebden.wordpress.com/"
+					ariaLabel="Delightful independent bookshop in Hebden Bridge"
+				>
+					independent bookshop
+				</ExternalLink>
+				, copies of Anne Lister's Secret Diaries were prominently on
+				display.
+			</Paragraph>
+		</ArticleLayout>
 	);
 }
 // [Anne
