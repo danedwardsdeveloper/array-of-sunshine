@@ -1,5 +1,5 @@
 import { ExternalLink, InternalLink } from '@/components/Links';
-import { BlogPosts } from '@/components/Posts';
+import { ArticlesList } from './articles/page';
 
 export default function Page() {
 	return (
@@ -30,7 +30,7 @@ export default function Page() {
 				.
 			</p>
 			<div className="my-8">
-				<BlogPosts />
+				<ArticlesList />
 			</div>
 		</section>
 	);

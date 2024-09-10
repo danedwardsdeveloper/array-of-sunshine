@@ -1,7 +1,6 @@
 import { ArticleLayout } from '@/components/ArticleLayout'
-import { AdditionalImage } from '@/components/Images'
 import { ExternalLink } from '@/components/Links'
-import { CodeBlock } from '@/components/CodeBlock'
+import Content from '@/components/Content'
  
 export const article = {
   writer: `Dan Edwards`,
@@ -18,23 +17,14 @@ export const metadata = {
   description: article.description,
 }
 
-export default (props) => <ArticleLayout article={article} {...props} />
-
 When creating a complex React root, it's crucial to understand the dependencies and order of the various providers and libraries being used. This article will walk you through setting up a comprehensive React application using multiple providers, ensuring that your application is both robust and maintainable.
 
 ## Code Overview
 
 Let's look at the oddly shaped code for creating a complex React root:
 
-<CodeBlock fileName='index.js '>
-	import React from 'react';
-	import ReactDOM from 'react-dom/client';
-	import { Provider } from 'react-redux';
-</CodeBlock>
-
 
 ```js
-js
 // index.js
 
 import React from 'react';

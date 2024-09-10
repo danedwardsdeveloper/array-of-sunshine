@@ -1,8 +1,9 @@
 import glob from 'fast-glob';
+import path from 'path';
 
 type Writer = 'Dan Edwards' | 'Google Gemini';
 
-export interface Article {
+export interface IArticle {
 	title: string;
 	description: string;
 	writer: Writer;
@@ -19,30 +20,32 @@ export interface Article {
 	date: string;
 }
 
-export interface ArticleWithSlug extends Article {
+export interface IArticleWithSlug extends IArticle {
 	slug: string;
 }
 
 async function importArticle(
 	articleFilename: string
-): Promise<ArticleWithSlug> {
-	let { article } = (await import(`../app/articles/${articleFilename}`)) as {
+): Promise<IArticleWithSlug> {
+	const slug = path.dirname(articleFilename);
+
+	const { article } = (await import(`../app/articles/${articleFilename}`)) as {
 		default: React.ComponentType;
-		article: Article;
+		article: IArticle;
 	};
 
 	return {
-		slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
+		slug,
 		...article,
 	};
 }
 
 export async function getAllArticles() {
-	let articleFilenames = await glob('*/page.mdx', {
+	const articleFilenames = await glob('*/page.tsx', {
 		cwd: './src/app/articles',
 	});
 
-	let articles = await Promise.all(articleFilenames.map(importArticle));
+	const articles = await Promise.all(articleFilenames.map(importArticle));
 
 	return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date));
 }

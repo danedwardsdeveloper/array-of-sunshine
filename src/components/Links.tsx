@@ -34,8 +34,8 @@ export function ExternalLink({
 				rel="noopener noreferrer"
 				className={clsx(
 					baseStyles,
-					'text-blue-600',
-					'hover:text-blue-500',
+					'text-gray-600',
+					'hover:text-gray-500',
 					className
 				)}
 				aria-label={ariaLabel}

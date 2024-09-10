@@ -28,7 +28,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		".next/types/**/*.ts",
-		"**/*.mdx"
+		"**/*.mdx",
+		"src/app/articles/creating-a-complex-react-root-order-and-dependencies/page.tdx"
 	],
 	"exclude": ["node_modules"]
 }

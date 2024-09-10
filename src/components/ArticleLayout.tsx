@@ -1,16 +1,19 @@
 'use client';
-import { Prose } from '@/components/Prose';
-import { type ArticleWithSlug } from '@/library/articles';
+import { type IArticle } from '@/library/articles';
 import formatDate from '@/library/formatDate';
-import { FeaturedImage } from '@/components/Images';
+import Content from './Content';
 
 export function ArticleLayout({
 	article,
 	children,
 }: {
-	article: ArticleWithSlug;
+	article: IArticle;
 	children: React.ReactNode;
 }) {
+	{
+		console.log(`Image src: ${article.featuredImage}`);
+	}
+
 	return (
 		<section>
 			<article>
@@ -23,9 +26,12 @@ export function ArticleLayout({
 						{formatDate(article.date)}
 					</p>
 				</div>
-				<FeaturedImage src={article.featuredImage} alt={article.title} />
+				<Content.FeaturedImage
+					src={`${article.featuredImage}`}
+					alt={article.title}
+				/>
+				<div>{children}</div>
 			</article>
-			<Prose data-mdx-content>{children}</Prose>
 		</section>
 	);
 }

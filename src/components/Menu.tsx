@@ -6,11 +6,7 @@ const menuItems = [
 		path: '/',
 	},
 	{
-		name: 'Blog (old)',
-		path: '/blog',
-	},
-	{
-		name: 'Articles (new)',
+		name: 'Articles',
 		path: '/articles',
 	},
 ];
