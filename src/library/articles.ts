@@ -1,3 +1,4 @@
+import fs from 'fs/promises';
 import glob from 'fast-glob';
 import path from 'path';
 
@@ -24,28 +25,57 @@ export interface IArticleWithSlug extends IArticle {
 	slug: string;
 }
 
-async function importArticle(
-	articleFilename: string
-): Promise<IArticleWithSlug> {
-	const slug = path.dirname(articleFilename);
+export async function getArticleData(
+	slug: string
+): Promise<IArticleWithSlug | null> {
+	try {
+		const filePath = path.join(
+			process.cwd(),
+			'src/app/articles',
+			slug,
+			'page.tsx'
+		);
+		const content = await fs.readFile(filePath, 'utf8');
 
-	const { article } = (await import(`../app/articles/${articleFilename}`)) as {
-		default: React.ComponentType;
-		article: IArticle;
-	};
+		const articleMatch = content.match(
+			/export const article: IArticle = ({[\s\S]*?});/
+		);
 
-	return {
-		slug,
-		...article,
-	};
+		if (articleMatch) {
+			const articleData = eval(`(${articleMatch[1]})`) as IArticle;
+			return {
+				...articleData,
+				slug: slug,
+			};
+		}
+	} catch (error) {
+		console.error(`Error reading article ${slug}:`, error);
+	}
+
+	return null;
 }
 
-export async function getAllArticles() {
-	const articleFilenames = await glob('*/page.tsx', {
-		cwd: './src/app/articles',
-	});
+export async function getAllArticles(): Promise<IArticleWithSlug[]> {
+	try {
+		const articlePaths = await glob('src/app/articles/*', {
+			onlyDirectories: true,
+			ignore: ['src/app/articles/_work-in-progress'],
+		});
 
-	const articles = await Promise.all(articleFilenames.map(importArticle));
+		const articles = await Promise.all(
+			articlePaths.map(async (articlePath) => {
+				const slug = path.basename(articlePath);
+				return await getArticleData(slug);
+			})
+		);
 
-	return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date));
+		return articles
+			.filter((article): article is IArticleWithSlug => article !== null)
+			.sort(
+				(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+			);
+	} catch (error) {
+		console.error('Error fetching articles:', error);
+		return [];
+	}
 }
