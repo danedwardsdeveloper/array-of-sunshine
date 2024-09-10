@@ -15,7 +15,7 @@ export const InlineCode = ({
 	...props
 }: React.HTMLAttributes<HTMLElement>) => (
 	<code
-		className="bg-gray-200 text-indigo-600 rounded px-1 py-0.5 font-mono"
+		className="text-base bg-gray-200 text-indigo-600 rounded px-1 py-0.5 font-mono"
 		{...props}
 	>
 		{children}
