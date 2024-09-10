@@ -1,16 +1,18 @@
-// import { getBlogPosts } from '@/library/oldUtils';
-// import { baseUrl } from '@/library/environment';
+import { baseUrl } from '@/library/environment';
+import { getAllArticles } from '@/library/articles';
 
-// export default async function sitemap() {
-// 	let blogs = getBlogPosts().map((post) => ({
-// 		url: `${baseUrl}/blog/${post.slug}`,
-// 		lastModified: post.metadata.publishedAt,
-// 	}));
+export default async function sitemap() {
+	const articles = await getAllArticles();
 
-// 	let routes = ['', '/blog'].map((route) => ({
-// 		url: `${baseUrl}${route}`,
-// 		lastModified: new Date().toISOString().split('T')[0],
-// 	}));
+	const articlePages = articles.map((article) => ({
+		url: `${baseUrl}/articles/${article.slug}`,
+		lastModified: article.date,
+	}));
 
-// 	return [...routes, ...blogs];
-// }
+	const routes = ['', '/articles'].map((route) => ({
+		url: `${baseUrl}${route}`,
+		lastModified: new Date().toISOString().split('T')[0],
+	}));
+
+	return [...routes, ...articlePages];
+}

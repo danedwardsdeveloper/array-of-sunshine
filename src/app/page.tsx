@@ -1,5 +1,5 @@
 import { ExternalLink, InternalLink } from '@/components/Links';
-import { ArticlesList } from './articles/page';
+import ArticlesList from '@/components/ArticlesList';
 
 export default function Page() {
 	return (

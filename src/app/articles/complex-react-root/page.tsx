@@ -1,34 +1,19 @@
+import { article } from './data';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { Heading2, Heading3 } from '@/components/Headings';
 import { UnorderedList, ListItem } from '@/components/Lists';
 import Paragraph from '@/components/Paragraph';
 import { CodeBlock, InlineCode } from '@/components/Code';
-import { type IArticle } from '@/library/articles';
 
-export const article: IArticle = {
-	writer: `Dan Edwards`,
-	date: '2024-06-24',
-	title: `Creating a Complex React Root | Order and Dependencies`,
-	description: `Learn how to set up a complex React root with multiple providers, ensuring robust and maintainable applications. Understand the order and dependencies for a comprehensive React setup.`,
-	keywords: `complex react root, react setup, multiple providers, react dependencies, react order, redux, apollo provider, intlprovider, themeprovider, react-helmet, react-router, persistgate, react front-end, javascript, web development`,
-	tags: 'React, React Router, React Helmet',
-	featuredImage: 'react',
-};
-
-export const metadata = {
-	title: article.title,
-	description: article.description,
-};
-
-export default function Article() {
+export default function Page() {
 	return (
 		<ArticleLayout article={article}>
 			<Paragraph>
 				When creating a complex React root, it's crucial to understand the
 				dependencies and order of the various providers and libraries being
-				used. This article will walk you through setting up a comprehensive
-				React application using multiple providers, ensuring that your
-				application is both robust and maintainable.
+				used. This articleData will walk you through setting up a
+				comprehensive React application using multiple providers, ensuring
+				that your application is both robust and maintainable.
 			</Paragraph>
 
 			<Heading2>Code Overview</Heading2>

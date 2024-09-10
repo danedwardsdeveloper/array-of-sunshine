@@ -5,9 +5,11 @@ import { FeaturedImage } from './Images';
 
 export function ArticleLayout({
 	article,
+	borderOnFeaturedImage,
 	children,
 }: {
 	article: IArticle;
+	borderOnFeaturedImage?: boolean;
 	children: React.ReactNode;
 }) {
 	{
@@ -25,7 +27,11 @@ export function ArticleLayout({
 					{`by ${article.writer}, ${formatDate(article.date)}`}
 				</p>
 			</div>
-			<FeaturedImage src={`${article.featuredImage}`} alt={article.title} />
+			<FeaturedImage
+				src={`${article.featuredImage}`}
+				alt={article.title}
+				border={borderOnFeaturedImage}
+			/>
 			<div>{children}</div>
 		</article>
 	);

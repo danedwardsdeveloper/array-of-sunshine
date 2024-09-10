@@ -1,4 +1,7 @@
+'use client';
 import Link from 'next/link';
+import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
 
 const menuItems = [
 	{
@@ -12,6 +15,8 @@ const menuItems = [
 ];
 
 export function Navbar() {
+	const pathname = usePathname();
+
 	return (
 		<aside className="-ml-[8px] mb-16 tracking-tight">
 			<div className="lg:sticky lg:top-20">
@@ -24,7 +29,15 @@ export function Navbar() {
 							<Link
 								key={item.path}
 								href={item.path}
-								className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+								className={clsx(
+									'transition-all duration-200',
+									'hover:text-neutral-800 dark:hover:text-neutral-200',
+									'flex align-middle',
+									'relative py-1 px-2 m-1',
+									pathname === item.path
+										? 'font-semibold text-neutral-900 dark:text-neutral-100'
+										: 'font-normal text-neutral-500 dark:text-neutral-400'
+								)}
 							>
 								{item.name}
 							</Link>

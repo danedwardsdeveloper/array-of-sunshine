@@ -33,7 +33,7 @@ export async function getArticleData(
 			process.cwd(),
 			'src/app/articles',
 			slug,
-			'page.tsx'
+			'data.ts'
 		);
 		const content = await fs.readFile(filePath, 'utf8');
 
