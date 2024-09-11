@@ -12,10 +12,6 @@ export function ArticleLayout({
 	borderOnFeaturedImage?: boolean;
 	children: React.ReactNode;
 }) {
-	{
-		console.log(`Image src: ${article.featuredImage}`);
-	}
-
 	return (
 		<article>
 			<h1 className="title font-semibold text-2xl tracking-tighter">

@@ -1,3 +1,5 @@
+'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 
@@ -8,8 +10,8 @@ function getImageSrc(src: string, isFeatured: boolean): string {
 }
 
 const baseImageStyles = `rounded-md w-full h-auto`;
-const baseContainerStyles = 'w-full';
 const borderStyles = 'border-2 border-gray-300 rounded-md';
+const placeholderStyles = 'absolute inset-0 bg-gray-200 animate-pulse';
 
 interface FeaturedImageProps {
 	src: string;
@@ -23,10 +25,17 @@ interface AdditionalImageProps extends FeaturedImageProps {
 }
 
 export const FeaturedImage = ({ src, alt, border }: FeaturedImageProps) => {
+	const [isLoading, setIsLoading] = useState(true);
 	const imageSrc = getImageSrc(src, true);
 
 	return (
-		<div className={clsx(baseContainerStyles)}>
+		<div className={clsx('w-full')}>
+			{isLoading && (
+				<div
+					className={clsx(placeholderStyles)}
+					style={{ width: 324, height: 576 }}
+				/>
+			)}
 			<Image
 				src={imageSrc}
 				alt={alt}
@@ -36,6 +45,7 @@ export const FeaturedImage = ({ src, alt, border }: FeaturedImageProps) => {
 				priority
 				sizes="(max-width: 768px) 100vw, 576px"
 				className={clsx(baseImageStyles, border && borderStyles)}
+				onLoadingComplete={() => setIsLoading(false)}
 			/>
 		</div>
 	);
@@ -48,10 +58,17 @@ export const AdditionalImage = ({
 	width,
 	border,
 }: AdditionalImageProps) => {
+	const [isLoading, setIsLoading] = useState(true);
 	const imageSrc = getImageSrc(src, false);
 
 	return (
-		<div className={clsx(baseContainerStyles, 'relative')}>
+		<div className={clsx('w-full relative')}>
+			{isLoading && (
+				<div
+					className={clsx(placeholderStyles)}
+					style={{ width, height }}
+				/>
+			)}
 			<Image
 				src={imageSrc}
 				alt={alt}
@@ -64,6 +81,7 @@ export const AdditionalImage = ({
 					'object-cover',
 					border && borderStyles
 				)}
+				onLoadingComplete={() => setIsLoading(false)}
 			/>
 		</div>
 	);

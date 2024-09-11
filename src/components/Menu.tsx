@@ -14,7 +14,7 @@ const menuItems = [
 	},
 ];
 
-export function Navbar() {
+export default function Menu() {
 	const pathname = usePathname();
 
 	return (

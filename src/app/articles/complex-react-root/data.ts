@@ -8,7 +8,7 @@ export const article: IArticle = {
 	description: `Learn how to set up a complex React root with multiple providers, ensuring robust and maintainable applications. Understand the order and dependencies for a comprehensive React setup.`,
 	keywords: `complex react root, react setup, multiple providers, react dependencies, react order, redux, apollo provider, intlprovider, themeprovider, react-helmet, react-router, persistgate, react front-end, javascript, web development`,
 	tags: 'React, React Router, React Helmet',
-	featuredImage: 'react',
+	featuredImage: 'complex-react-root-order',
 };
 
 export const metadata: Metadata = {

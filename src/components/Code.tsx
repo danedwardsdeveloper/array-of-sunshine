@@ -66,7 +66,7 @@ export const CodeBlock = ({
 					</span>
 				</div>
 				{showTooltip && !copied && (
-					<div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded shadow-lg">
+					<div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-gray-600 bg-gray-800 rounded shadow-lg">
 						Copy code
 					</div>
 				)}
@@ -75,12 +75,19 @@ export const CodeBlock = ({
 					onMouseEnter={() => setShowTooltip(true)}
 					onMouseLeave={() => setShowTooltip(false)}
 					aria-label="Copy code"
-					className="flex items-center space-x-1 hover:opacity-80    px-2 py-1 rounded"
+					className={clsx(
+						'flex items-center',
+						'px-2 py-1 space-x-1',
+						'hover:opacity-80',
+						'rounded'
+					)}
 				>
 					<span className="text-base text-center">
 						<span
 							className={clsx(
-								'inline-block transition-all duration-200 ease-in-out',
+								'inline-block',
+								'transition-all duration-200 ease-in-out',
+								'text-gray-600',
 								copied || showTooltip
 									? 'opacity-100 transform'
 									: 'opacity-0 transform'

@@ -7,21 +7,16 @@ import {
 	environment,
 	baseUrl,
 } from '@/library/environment';
+import { title, description } from '@/library/baseMetadata';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
-import { Navbar } from '@/components/Menu';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import Menu from '@/components/Menu';
 import Footer from '@/components/Footer';
 import { Providers } from '@/app/providers';
 
 import clsx from 'clsx';
 
 validateEnvironment();
-
-const title = `Array of Sunshine | Full-Stack Web Dev Insights by Dan Edwards`;
-
-const description = `Explore Array of Sunshine, a coding blog by Dan Edwards covering full-stack web development. Dive into Node.js, TypeScript, React, Next.js, Express, MongoDB, and MERN stack applications. Level up your web dev skills today!`;
 
 export const metadata: Metadata = {
 	metadataBase: new URL(baseUrl),
@@ -90,11 +85,9 @@ export default function RootLayout({
 							'md:px-0'
 						)}
 					>
-						<Navbar />
+						<Menu />
 						{children}
 						<Footer />
-						<Analytics />
-						<SpeedInsights />
 					</main>
 				</Providers>
 				{environment.isProduction && <SimpleAnalyticScript />}
