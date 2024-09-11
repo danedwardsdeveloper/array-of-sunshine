@@ -1,87 +1,46 @@
-'use client';
-import { useState } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import clsx from 'clsx';
 
-function getImageSrc(src: string, isFeatured: boolean): string {
-	return isFeatured
-		? `/images/social-png/${src}.png`
-		: `/images/regular-webp/${src}.webp`;
-}
-
+const baseContainerStyles = `w-full my-4`;
 const baseImageStyles = `rounded-md w-full h-auto`;
 const borderStyles = 'border-2 border-gray-300 rounded-md';
-const placeholderStyles = 'absolute inset-0 bg-gray-200 animate-pulse';
+const sizes =
+	'(max-width: 1023px) calc(100vw - 2rem), min(calc(100vw - 2rem), 576px)';
 
-interface FeaturedImageProps {
-	src: string;
+interface CustomImageProps {
+	image: StaticImageData;
 	alt: string;
 	border?: boolean;
 }
 
-interface AdditionalImageProps extends FeaturedImageProps {
-	width: number;
-	height: number;
-}
-
-export const FeaturedImage = ({ src, alt, border }: FeaturedImageProps) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const imageSrc = getImageSrc(src, true);
-
+export const FeaturedImage = ({ image, alt, border }: CustomImageProps) => {
 	return (
-		<div className={clsx('w-full')}>
-			{isLoading && (
-				<div
-					className={clsx(placeholderStyles)}
-					style={{ width: 324, height: 576 }}
-				/>
-			)}
+		<div className={clsx(baseContainerStyles)}>
 			<Image
-				src={imageSrc}
+				src={image}
 				alt={alt}
-				width={576}
-				height={324}
 				quality={100}
 				priority
-				sizes="(max-width: 768px) 100vw, 576px"
+				sizes={sizes}
 				className={clsx(baseImageStyles, border && borderStyles)}
-				onLoadingComplete={() => setIsLoading(false)}
 			/>
 		</div>
 	);
 };
 
-export const AdditionalImage = ({
-	src,
-	alt,
-	height,
-	width,
-	border,
-}: AdditionalImageProps) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const imageSrc = getImageSrc(src, false);
-
+export const AdditionalImage = ({ image, alt, border }: CustomImageProps) => {
 	return (
-		<div className={clsx('w-full relative')}>
-			{isLoading && (
-				<div
-					className={clsx(placeholderStyles)}
-					style={{ width, height }}
-				/>
-			)}
+		<div className={clsx(baseContainerStyles, 'relative')}>
 			<Image
-				src={imageSrc}
+				src={image}
 				alt={alt}
-				height={height}
-				width={width}
 				quality={100}
-				sizes="(max-width: 768px) 100vw, 50vw"
+				sizes={sizes}
 				className={clsx(
 					baseImageStyles,
 					'object-cover',
 					border && borderStyles
 				)}
-				onLoadingComplete={() => setIsLoading(false)}
 			/>
 		</div>
 	);
