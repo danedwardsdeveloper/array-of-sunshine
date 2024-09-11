@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import glob from 'fast-glob';
 import path from 'path';
+import { StaticImageData } from 'next/image';
 
 type Writer = 'Dan Edwards' | 'Google Gemini';
 
@@ -11,11 +12,8 @@ export interface IArticle {
 	tags: string;
 	keywords: string;
 
-	/** Landscape meta image exactly 1,200 x 675px
-	 * No file extension or folder details
-	 * Example: 'featured-image'
-	 */
-	featuredImage: string;
+	/** Landscape meta image exactly 1,200 x 675px */
+	featuredImage: StaticImageData;
 
 	/**Year-Month-Day: '2024-09-04' */
 	date: string;
