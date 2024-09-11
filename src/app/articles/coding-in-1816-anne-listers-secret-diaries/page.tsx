@@ -1,9 +1,18 @@
+import { Metadata } from 'next';
+
+import { generateArticleMetadata } from '@/library/metadata';
 import { article } from './data';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { ExternalLink } from '@/components/Links';
 import Paragraph from '@/components/Paragraph';
 import { Heading2 } from '@/components/Headings';
 import { AdditionalImage } from '@/components/Images';
+
+import crossWritingImage from '../../../../public/images/regular-webp/cross-writing.webp';
+
+export const generateMetadata = (): Metadata => {
+	return generateArticleMetadata(article);
+};
 
 export default function Page() {
 	return (
@@ -121,10 +130,8 @@ export default function Page() {
 				paper.
 			</Paragraph>
 			<AdditionalImage
-				src={`cross-writing`}
+				image={crossWritingImage}
 				alt={`Anne Lister's diaries were cross written to save money on paper`}
-				width={576}
-				height={483}
 				border
 			/>
 			<Paragraph>

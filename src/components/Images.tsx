@@ -19,9 +19,10 @@ export const FeaturedImage = ({ image, alt, border }: CustomImageProps) => {
 			<Image
 				src={image}
 				alt={alt}
-				quality={100}
+				quality={80}
 				priority
 				sizes={sizes}
+				placeholder="blur"
 				className={clsx(baseImageStyles, border && borderStyles)}
 			/>
 		</div>
@@ -34,8 +35,9 @@ export const AdditionalImage = ({ image, alt, border }: CustomImageProps) => {
 			<Image
 				src={image}
 				alt={alt}
-				quality={100}
+				quality={80}
 				sizes={sizes}
+				placeholder="blur"
 				className={clsx(
 					baseImageStyles,
 					'object-cover',

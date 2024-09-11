@@ -1,4 +1,4 @@
-import { baseUrl } from '@/library/environment';
+import { environment } from '@/library/environment';
 
 export default function robots() {
 	return {
@@ -7,6 +7,6 @@ export default function robots() {
 				userAgent: '*',
 			},
 		],
-		sitemap: `${baseUrl}/sitemap.xml`,
+		sitemap: `${environment.productionBaseURL}/sitemap.xml`,
 	};
 }

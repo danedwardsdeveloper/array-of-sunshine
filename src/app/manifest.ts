@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 
-import { title, description } from '@/library/baseMetadata';
+import { defaultMetaTitle, defaultMetaDescription } from '@/library/metadata';
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
-		name: title,
+		name: defaultMetaTitle,
 		short_name: 'Array of Sunshine',
-		description: description,
+		description: defaultMetaDescription,
 		start_url: '/',
 		display: 'standalone',
 

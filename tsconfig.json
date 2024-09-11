@@ -29,7 +29,8 @@
 		"**/*.tsx",
 		".next/types/**/*.ts",
 		"**/*.mdx",
-		"src/app/articles/creating-a-complex-react-root-order-and-dependencies/page.tdx"
+		"src/app/articles/creating-a-complex-react-root-order-and-dependencies/page.tdx",
+		"next.config.mjs"
 	],
 	"exclude": ["node_modules"]
 }

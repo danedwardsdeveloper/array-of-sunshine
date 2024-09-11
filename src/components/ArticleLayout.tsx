@@ -1,7 +1,36 @@
-'use client';
 import { type IArticle } from '@/library/articles';
 import formatDate from '@/library/formatDate';
 import { FeaturedImage } from './Images';
+import { siteName } from '@/library/metadata';
+
+export function generateSEOMetadata(article: IArticle) {
+	return {
+		title: article.title,
+		description: article.description,
+		openGraph: {
+			title: article.title,
+			description: article.description,
+			type: 'article',
+			publishedTime: article.date,
+			authors: [article.writer],
+			siteName: siteName,
+			images: [
+				{
+					url: article.featuredImage,
+					width: 1200,
+					height: 675,
+					alt: article.title,
+				},
+			],
+		},
+		twitter: {
+			card: 'summary_large_image',
+			title: article.title,
+			description: article.description,
+			images: [article.featuredImage],
+		},
+	};
+}
 
 export function ArticleLayout({
 	article,
@@ -24,7 +53,7 @@ export function ArticleLayout({
 				</p>
 			</div>
 			<FeaturedImage
-				src={`${article.featuredImage}`}
+				image={article.featuredImage}
 				alt={article.title}
 				border={borderOnFeaturedImage}
 			/>

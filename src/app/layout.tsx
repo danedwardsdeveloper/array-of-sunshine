@@ -1,37 +1,60 @@
 import './global.tailwind.css';
 import Script from 'next/script';
 import type { Metadata, Viewport } from 'next';
+import clsx from 'clsx';
 
+import { validateEnvironment, environment } from '@/library/environment';
 import {
-	validateEnvironment,
-	environment,
-	baseUrl,
-} from '@/library/environment';
-import { title, description } from '@/library/baseMetadata';
+	siteName,
+	defaultMetaTitle,
+	defaultMetaDescription,
+	defaultSocialImage,
+} from '@/library/metadata';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import Menu from '@/components/Menu';
 import Footer from '@/components/Footer';
 import { Providers } from '@/app/providers';
 
-import clsx from 'clsx';
-
 validateEnvironment();
 
 export const metadata: Metadata = {
-	metadataBase: new URL(baseUrl),
 	title: {
-		default: title,
+		default: defaultMetaTitle,
 		template: '%s | Array of Sunshine, Full-Stack Web Dev Blog',
 	},
-	description: description,
+	description: defaultMetaDescription,
+	keywords: [
+		'web development',
+		'full-stack',
+		'typescript',
+		'next.js',
+		'node.js',
+		'react',
+		'mern',
+	],
+	authors: [{ name: 'Dan Edwards', url: environment.productionBaseURL }],
+	creator: 'Dan Edwards',
+	publisher: siteName,
 	openGraph: {
-		title: 'My Portfolio',
-		description: description,
-		url: baseUrl,
-		siteName: 'My Portfolio',
-		locale: 'en_US',
+		title: defaultMetaTitle,
+		description: defaultMetaDescription,
+		url: environment.productionBaseURL,
+		siteName: siteName,
+		locale: 'en_GB',
 		type: 'website',
+		images: [
+			{
+				url: defaultSocialImage.absoluteUrl,
+				width: 1200,
+				height: 675,
+				alt: 'Array of Sunshine web dev blog',
+			},
+		],
+	},
+	twitter: {
+		card: 'summary_large_image',
+		images: defaultSocialImage.absoluteUrl,
 	},
 	robots: {
 		index: true,
@@ -43,6 +66,9 @@ export const metadata: Metadata = {
 			'max-image-preview': 'large',
 			'max-snippet': -1,
 		},
+	},
+	alternates: {
+		canonical: environment.productionBaseURL,
 	},
 };
 
@@ -64,10 +90,12 @@ export default function RootLayout({
 		<html
 			lang="en-GB"
 			className={clsx(
-				'text-black bg-white dark:text-white dark:bg-black',
+				'text-black bg-white',
+				'dark:text-white dark:bg-black',
 				GeistSans.variable,
 				GeistMono.variable
 			)}
+			suppressHydrationWarning
 		>
 			<body
 				className={clsx(
@@ -79,11 +107,7 @@ export default function RootLayout({
 			>
 				<Providers>
 					<main
-						className={clsx(
-							'flex-auto flex flex-col min-w-0',
-							' mt-6',
-							'md:px-0'
-						)}
+						className={clsx('flex-auto flex flex-col min-w-0', ' mt-6')}
 					>
 						<Menu />
 						{children}

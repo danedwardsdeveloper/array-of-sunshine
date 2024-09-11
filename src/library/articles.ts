@@ -1,4 +1,3 @@
-import fs from 'fs/promises';
 import glob from 'fast-glob';
 import path from 'path';
 import { StaticImageData } from 'next/image';
@@ -27,25 +26,13 @@ export async function getArticleData(
 	slug: string
 ): Promise<IArticleWithSlug | null> {
 	try {
-		const filePath = path.join(
-			process.cwd(),
-			'src/app/articles',
-			slug,
-			'data.ts'
-		);
-		const content = await fs.readFile(filePath, 'utf8');
+		const articleModule = await import(`../app/articles/${slug}/data`);
+		const articleData = articleModule.article as IArticle;
 
-		const articleMatch = content.match(
-			/export const article: IArticle = ({[\s\S]*?});/
-		);
-
-		if (articleMatch) {
-			const articleData = eval(`(${articleMatch[1]})`) as IArticle;
-			return {
-				...articleData,
-				slug: slug,
-			};
-		}
+		return {
+			...articleData,
+			slug: slug,
+		};
 	} catch (error) {
 		console.error(`Error reading article ${slug}:`, error);
 	}
@@ -57,7 +44,7 @@ export async function getAllArticles(): Promise<IArticleWithSlug[]> {
 	try {
 		const articlePaths = await glob('src/app/articles/*', {
 			onlyDirectories: true,
-			ignore: ['src/app/articles/_work-in-progress'],
+			ignore: ['_work-in-progress'],
 		});
 
 		const articles = await Promise.all(

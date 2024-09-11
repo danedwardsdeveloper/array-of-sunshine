@@ -14,15 +14,18 @@ const envConfig = {
 const cleanedEnv = cleanEnv(process.env, envConfig);
 
 const isProduction = cleanedEnv.ENVIRONMENT === 'production';
-export const baseUrl: string = 'https://arrayofsunshine.co.uk';
-// const baseUrl = isProduction
-// 	? 'https://arrayofsunshine.co.uk'
-// 	: 'http://localhost:3000';
+const isDevelopment = cleanedEnv.ENVIRONMENT === 'development';
+
+const productionBaseURL = 'https://arrayofsunshine.co.uk';
+const developmentBaseURL = 'http://localhost:3000';
+const dynamicBaseURL = isProduction ? productionBaseURL : developmentBaseURL;
 
 export const environment = {
-	...cleanedEnv,
 	isProduction,
-};
+	isDevelopment,
+	productionBaseURL,
+	dynamicBaseURL,
+} as const;
 
 export const validateEnvironment = () => {
 	cleanEnv(process.env, envConfig);

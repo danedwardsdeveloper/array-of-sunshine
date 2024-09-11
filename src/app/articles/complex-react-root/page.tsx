@@ -1,9 +1,16 @@
+import { Metadata } from 'next';
+
 import { article } from './data';
+import { generateArticleMetadata } from '@/library/metadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { Heading2, Heading3 } from '@/components/Headings';
 import { UnorderedList, ListItem } from '@/components/Lists';
 import Paragraph from '@/components/Paragraph';
 import { CodeBlock, InlineCode } from '@/components/Code';
+
+export const generateMetadata = (): Metadata => {
+	return generateArticleMetadata(article);
+};
 
 export default function Page() {
 	return (
