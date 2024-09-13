@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import { ArrowIcon } from './Icons';
 
 interface FooterLink {
@@ -6,6 +8,7 @@ interface FooterLink {
 }
 
 const footerLinks: FooterLink[] = [
+	{ href: '/', content: 'Home' },
 	{ href: 'https://danedwardsdeveloper.com/', content: 'Portfolio' },
 	{ href: 'https://github.com/danedwardsdeveloper', content: 'GitHub' },
 	{
@@ -14,19 +17,27 @@ const footerLinks: FooterLink[] = [
 	},
 ];
 
-const FooterLink = ({ href, content }: FooterLink) => (
-	<li>
-		<a
-			className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-			rel="noopener noreferrer"
-			target="_blank"
-			href={href}
-		>
-			<ArrowIcon />
-			<p className="ml-2 h-7">{content}</p>
-		</a>
-	</li>
-);
+const FooterLink = ({ href, content }: FooterLink) => {
+	const isExternal = href.startsWith('http');
+
+	return (
+		<li>
+			<a
+				className={clsx(
+					'flex items-center transition-all',
+					'hover:text-neutral-800 dark:hover:text-neutral-100'
+				)}
+				{...(isExternal
+					? { rel: 'noopener noreferrer', target: '_blank' }
+					: {})}
+				href={href}
+			>
+				<ArrowIcon />
+				<p className="ml-2 h-7">{content}</p>
+			</a>
+		</li>
+	);
+};
 
 export default function Footer() {
 	return (
