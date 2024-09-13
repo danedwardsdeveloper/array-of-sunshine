@@ -30,7 +30,7 @@ export default function Page() {
 				root:
 			</Paragraph>
 
-			<CodeBlock language="javascript" commentedOutFileName="// index.js">
+			<CodeBlock language="javascript" fileName="index.js">
 				{`
 import React from 'react';
 import ReactDOM from 'react-dom/client';
