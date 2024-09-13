@@ -4,7 +4,6 @@ import { article } from './data';
 import { generateArticleMetadata } from '@/library/metadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
-import { ExternalLink, InternalLink } from '@/components/Links';
 import Paragraph from '@/components/Paragraph';
 import { Heading2, Heading3 } from '@/components/Headings';
 import { AdditionalImage } from '@/components/Images';
