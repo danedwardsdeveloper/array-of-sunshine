@@ -12,6 +12,7 @@ export const defaultMetaDescription = `Explore Array of Sunshine, a coding blog 
 
 export const defaultSocialImage = {
 	absoluteUrl: `${environment.productionBaseURL}/images/social-png/array-of-sunshine.png`,
+	alt: 'Array of Sunshine | Full-Stack Web Dev Blog',
 	height: 675,
 	width: 1200,
 };
