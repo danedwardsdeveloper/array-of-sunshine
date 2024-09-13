@@ -19,7 +19,9 @@ export const FeaturedImage = ({ image, alt, border }: CustomImageProps) => {
 			<Image
 				src={image}
 				alt={alt}
-				quality={80}
+				height={576}
+				width={324}
+				quality={90}
 				priority
 				sizes={sizes}
 				placeholder="blur"
