@@ -4,7 +4,7 @@ import { article } from './data';
 import { generateArticleMetadata } from '@/library/metadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
-import { ExternalLink } from '@/components/Links';
+import StyledLink from '@/components/StyledLink';
 import Paragraph from '@/components/Paragraph';
 import { Heading2 } from '@/components/Headings';
 import { AdditionalImage } from '@/components/Images';
@@ -45,12 +45,12 @@ export default function Page() {
 			<Heading2>Initialise the project</Heading2>
 			<Paragraph>
 				I'll be using{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://www.npmjs.com/package/pnpm"
 					ariaLabel="PNPM: Performant Node Package Manager, NPM"
 				>
 					pnpm
-				</ExternalLink>{' '}
+				</StyledLink>{' '}
 				for this project.
 			</Paragraph>
 			<CodeBlock language="bash" fileName="Command line" disableLineNumbers>
@@ -169,12 +169,12 @@ console.table(quote);`}</CodeBlock>
 				The types have been erased, along with the empty lines, and{' '}
 				<InlineCode>"use strict"</InlineCode> has been added. You can learn
 				more about what this does{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://www.w3schools.com/js/js_strict.asp"
 					ariaLabel="W3 Schools: JavaScript Use Strict"
 				>
 					here
-				</ExternalLink>
+				</StyledLink>
 				.
 			</Paragraph>
 
@@ -191,12 +191,12 @@ console.table(quote);`}</CodeBlock>
 				And that's it! Hopefully that helped. One more bonus tip: if you
 				want to write some tests for your TypeScript application, I
 				recommend using{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://www.npmjs.com/package/vitest"
 					ariaLabel="Vitest package, NPM"
 				>
 					Vitest
-				</ExternalLink>
+				</StyledLink>
 				, which is a powerful testing framework that works beautifully with
 				TypeScript.
 			</Paragraph>
