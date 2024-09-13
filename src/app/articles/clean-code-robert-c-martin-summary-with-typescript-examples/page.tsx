@@ -5,7 +5,8 @@ import { article } from './data';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
-import { Heading2, Heading3, Heading4 } from '@/components/Headings';
+import { Heading2, Heading3 } from '@/components/Headings';
+import StyledLink from '@/components/StyledLink';
 
 export const generateMetadata = (): Metadata => {
 	return generateArticleMetadata(article);
@@ -15,60 +16,61 @@ export default function Page() {
 	return (
 		<ArticleLayout article={article}>
 			<Paragraph>
-				'Clean Code: A Handbook of Agile Software Craftsmanship' by Robert
-				C. Martin (Uncle Bob) is a seminal work in software development.
-				Published in 2008, it emphasizes writing readable, maintainable, and
-				elegant code. The book covers several key areas of software
-				craftsmanship:
+				<StyledLink
+					href="https://www.amazon.co.uk/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882"
+					ariaLabel="Clean Code by Robert C Martin book on Amazon"
+				>
+					Clean Code: A Handbook of Agile Software Craftsmanship
+				</StyledLink>{' '}
+				by Robert C. Martin is probably the closest a software development
+				book can get towards being a timeless classic. Published in 2008, it
+				emphasizes writing readable, maintainable, and elegant code.
 			</Paragraph>
-
-			<Heading2>1. Meaningful Naming</Heading2>
+			<Paragraph>
+				The book covers several key areas of software craftsmanship and is
+				not specific to any particular programming language. Here's what I
+				found most useful when reading it, with some additional tips for
+				working with TypeScript.
+			</Paragraph>
+			<Heading2>1. Meaningful Names</Heading2>
 			<Paragraph>
 				Martin stresses the importance of choosing clear,
 				intention-revealing names for variables, functions, and classes.
-				Good names can make code self-explanatory and reduce the need for
-				comments.
+				Well-chosen, expressive names can make code self-explanatory, reduce
+				the need for comments, and reduce the number of things you need to
+				remember.
 			</Paragraph>
 			<Paragraph>
-				I would like to add that it's okay if function names are quite long,
-				if necessary, and that single-letter variable names are usually a
-				terrible idea. <InlineCode>e</InlineCode> could mean{' '}
+				Finding the perfect expressive name for a variable or function can
+				take a long time, so feel free to rename things if you're hit with
+				inspiration later on. Modern IDEs make this easy, and your teammates
+				won't complain if it's a genuine improvement.
+			</Paragraph>
+			<Paragraph>
+				I want to add that it's okay if function names are pretty long, if
+				necessary, and that single-letter variable names are usually
+				terrible. <InlineCode>e</InlineCode> could mean{' '}
 				<InlineCode>error</InlineCode>, <InlineCode>event</InlineCode>, or{' '}
 				<InlineCode>evaluate</InlineCode>, so it can be confusing for
-				someone else reading your code. It can even be confusing for your
-				future self.
+				someone (your future self included) reading your code.
 			</Paragraph>
-
-			<Heading3>Bad example</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// badExample.ts"
-			>
+			<Heading3>For variables</Heading3>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`let d: number; // elapsed time in days`}
 			</CodeBlock>
 			<Paragraph>
-				This example uses a single letter variable name, which doesn't
+				This example uses a single-letter variable name, which doesn't
 				convey any meaning about its purpose or content.
 			</Paragraph>
-
-			<Heading3>Good example</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
 				{`let elapsedTimeInDays: number;`}
 			</CodeBlock>
 			<Paragraph>
-				This improved version clearly indicates what the variable
-				represents, making the code more readable and self-documenting.
+				This improved version indicates the variable's value, making the
+				code readable and self-documenting.
 			</Paragraph>
-
-			<Heading3>For functions:</Heading3>
-			<Heading4>Bad example</Heading4>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// badExample.ts"
-			>
+			<Heading3>For functions</Heading3>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`function getThem(): number[][] {
     const list1: number[][] = [];
     for (const x of theList)
@@ -81,12 +83,7 @@ export default function Page() {
 				This function uses vague names and doesn't clearly communicate its
 				purpose or the nature of the data it's processing.
 			</Paragraph>
-
-			<Heading4>Good example</Heading4>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
 				{`interface Cell {
     isFlagged(): boolean;
 }
@@ -100,19 +97,13 @@ function getFlaggedCells(gameBoard: Cell[]): Cell[] {
 				TypeScript's type system and array methods to clearly express the
 				function's intent.
 			</Paragraph>
-
 			<Heading2>2. Functions</Heading2>
 			<Paragraph>
-				Martin advocates for small, focused functions that do one thing and
-				do it well. He provides guidelines on function length, parameter
-				lists, and the Single Responsibility Principle.
+				Martin advocates for small, focused functions that do one thing
+				well. He provides guidelines on function length, parameter lists,
+				and the Single Responsibility Principle.
 			</Paragraph>
-
-			<Heading3>Bad example (long function doing multiple things):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// badExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`function payEmployee(e: Employee): void {
     if (e.isActive()) {
         const salary = calculateSalary(e);
@@ -131,14 +122,7 @@ function getFlaggedCells(gameBoard: Cell[]): Cell[] {
 				handling multiple concerns: calculation, database operations,
 				document generation, and email notifications.
 			</Paragraph>
-
-			<Heading3>
-				Good example (broken down into smaller, focused functions):
-			</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
 				{`function processPayment(employee: Employee): void {
     if (employee.isActive()) {
         const netSalary = calculateNetSalary(employee);
@@ -169,117 +153,95 @@ function notifyInactive Employee(employee: Employee): void {
 }`}
 			</CodeBlock>
 			<Paragraph>
-				This improved version breaks down the large function into smaller,
-				more focused functions. Each function has a single responsibility,
-				making the code more modular and easier to maintain.
+				This improved version breaks down the colossal function into
+				smaller, more focused functions. Each function has a single
+				responsibility, making the code more modular and easier to maintain.
 			</Paragraph>
-
-			<Heading2>3. Comments and Documentation</Heading2>
+			<Heading2>3. Comments</Heading2>
 			<Paragraph>
 				While not dismissing comments entirely, Martin argues for code that
 				is so clear and expressive that it requires minimal additional
 				explanation. He distinguishes between necessary clarifications and
 				redundant noise.
 			</Paragraph>
-
-			<Heading3>Bad example (redundant comment):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// badExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`// Check if the user is logged in
 if (user.isLoggedIn()) {
     // ...
 }`}
 			</CodeBlock>
 			<Paragraph>
-				This comment is unnecessary as the code itself clearly expresses
-				what's being checked.
+				This comment is unnecessary as the code clearly expresses what's
+				being checked.
 			</Paragraph>
-
-			<Heading3>Good example (comment explains why, not what):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
-				{`// We need to check login status before proceeding due to security requirements
-if (user.isLoggedIn()) {
-    // ...
-}`}
-			</CodeBlock>
-			<Paragraph>
-				This comment provides context that isn't immediately obvious from
-				the code itself, explaining the reason behind the check.
-			</Paragraph>
-
-			<Heading2>4. Formatting and Aesthetics</Heading2>
-			<Paragraph>
-				The book delves into the visual aspects of code, discussing
-				indentation, white space, and overall structure. Consistent, clean
-				formatting enhances readability and reduces cognitive load.
-			</Paragraph>
-
-			<Heading3>Bad example (inconsistent formatting):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// badExample.ts"
-			>
-				{`class User {
-private name: string;
-    private age: number;
-  constructor(name: string, age: number) {
-        this.name = name;
-    this.age = age;
-    }
-    getName(): string { return this.name; }
-getAge(): number { return this.age; }
-}`}
-			</CodeBlock>
-			<Paragraph>
-				This example has inconsistent indentation and spacing, making it
-				harder to read and understand the structure of the class.
-			</Paragraph>
-
-			<Heading3>Good example (consistent formatting):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
-				{`class User {
-    private name: string;
-    private age: number;
-
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
-    }
-
-    getName(): string {
-        return this.name;
-    }
-
-    getAge(): number {
-        return this.age;
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
+				{`// IMPORTANT: Do not change the order of these operations.
+// The API expects the data to be sent in this specific sequence,
+// or it will reject the entire batch.
+function processUserData(users: User[]): void {
+    for (const user of users) {
+        sendBasicInfo(user);
+        updatePreferences(user);
+        recordLoginTime(user);
+        notifyConnectedServices(user);
     }
 }`}
 			</CodeBlock>
 			<Paragraph>
-				The improved version uses consistent indentation and spacing, making
-				the class structure clear and easy to read.
+				This imaginary API is probably not very well coded and should be
+				rewritten. However, if it were an external API that you couldn't
+				change, this comment would be justified.
 			</Paragraph>
+			<Heading3>JSDoc Comments</Heading3>
+			<Paragraph>
+				One TypeScript-specific feature I learned from another book,{' '}
+				<StyledLink
+					href="https://effectivetypescript.com/"
+					ariaLabel="Effective TypeScript by Dan Vanderkam"
+				>
+					Effective TypeScript, by Dan Vanderkam
+				</StyledLink>{' '}
+				is using JSDoc comments. You can put these in your types and
+				interfaces, creating helpful popups when filling your variables with
+				data.
+			</Paragraph>
+			<CodeBlock
+				language="typescript"
+				fileName="articles.ts"
+			>{`import { StaticImageData } from 'next/image';
 
+export interface Article {
+title: string;
+description: string;
+writer: string;
+
+/** Lowercase, separated with a comma and space
+ * 	Example; 'react, next.js, front-end'
+ */
+keywords: string;
+
+/** Landscape meta image, PNG exactly 1,200 x 675px */
+featuredImage: StaticImageData;
+
+/**Year-Month-Day: '2024-09-04' */
+date: string;
+}`}</CodeBlock>
+			<Heading2>4. Formatting</Heading2>
+			<Paragraph>
+				This chapter is dated, as modern IDEs like VS Code and powerful
+				plugins like Prettier and ESLint can instantly enforce beautiful
+				formatting. However, it's still an important consideration, as
+				coding is probably 98% reading and 2% writing, and anything you can
+				do to make your code more accessible for other people to understand
+				is undoubtedly a good thing.
+			</Paragraph>
 			<Heading2>5. Error Handling</Heading2>
 			<Paragraph>
 				Martin emphasizes the importance of proper error handling
 				techniques, writing code that gracefully handles exceptions and edge
 				cases.
 			</Paragraph>
-
-			<Heading3>Bad example (poor error handling):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// badExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`function readFile(filename: string): void {
     try {
         // Read file
@@ -292,12 +254,7 @@ getAge(): number { return this.age; }
 				This example catches all errors and logs a generic message, losing
 				important error details and potentially hiding serious issues.
 			</Paragraph>
-
-			<Heading3>Good example (specific error handling):</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
 				{`import { promises as fs } from 'fs';
 
 async function readFile(filename: string): Promise<string> {
@@ -305,10 +262,10 @@ async function readFile(filename: string): Promise<string> {
         return await fs.readFile(filename, 'utf8');
     } catch (error) {
         if (error instanceof Error) {
-            if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+            if ('code' in error && error.code === 'ENOENT') {
                 throw new Error(\`File not found: \${filename}\`);
             }
-            throw new Error(\`Error reading file \${filename}: \${e.message}\`);
+            throw new Error(\`Error reading file \${filename}: \${error.message}\`);
         }
         throw error;
     }
@@ -316,22 +273,19 @@ async function readFile(filename: string): Promise<string> {
 			</CodeBlock>
 			<Paragraph>
 				This improved version handles specific error types, provides more
-				detailed error messages, and properly propagates errors up the call
+				detailed error messages, and correctly propagates errors up the call
 				stack.
 			</Paragraph>
-
-			<Heading2>6. Unit Testing</Heading2>
+			<Heading2>6. Testing</Heading2>
 			<Paragraph>
-				Martin is a strong advocate for Test-Driven Development (TDD) and
-				dedicates several chapters to writing effective unit tests.
+				Martin strongly advocates Test-Driven Development (TDD) and
+				dedicates several chapters to writing effective unit tests. For
+				TypeScript projects, I love using Vitest, as you can also write your
+				tests in TypeScript with minimal or no additional configuration.
 			</Paragraph>
+			<CodeBlock language="typescript" fileName="calculator.test.ts">
+				{`import { describe, it, expect, beforeEach } from 'vitest';
 
-			<Heading3>Example of a good unit test:</Heading3>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
-				{`import { expect } from 'chai';
 import { Calculator } from './Calculator';
 
 describe('Calculator', () => {
@@ -342,33 +296,27 @@ describe('Calculator', () => {
     });
 
     it('should add two numbers correctly', () => {
-        expect(calc.add(2, 2)).to.equal(4);
-        expect(calc.add(-1, 1)).to.equal(0);
-        expect(calc.add(-1, -1)).to.equal(-2);
+        expect(calc.add(2, 2)).toBe(4);
+        expect(calc.add(-1, 1)).toBe(0);
+        expect(calc.add(-1, -1)).toBe(-2);
     });
 });`}
 			</CodeBlock>
 			<Paragraph>
-				This test is clear, concise, and covers multiple scenarios for the
-				add function, including positive, negative, and zero sum cases.
+				This test is clear and concise and covers multiple scenarios for the
+				add function, including positive, negative, and zero-sum cases.
 			</Paragraph>
-
 			<Heading2>7. Problematic Code Patterns</Heading2>
 			<Paragraph>
 				Martin extensively discusses signs of suboptimal code and how to
 				improve it. These include:
 			</Paragraph>
-
-			<Heading3>
-				a) Rigidity: When software is difficult to change because every
-				modification affects many other parts of the system.
-			</Heading3>
-
-			<Heading4>Example of rigid code:</Heading4>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
+			<Heading3>a) Rigidity</Heading3>
+			<Paragraph>
+				When software is difficult to change because every modification
+				affects many other parts of the system.
+			</Paragraph>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`class Report {
     generateReport(): void {
         this.getData();
@@ -385,13 +333,11 @@ describe('Calculator', () => {
 				process requires modifying this class, potentially affecting all its
 				functionalities.
 			</Paragraph>
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
+				{`interface Data {}
+interface FormattedData {}
 
-			<Heading4>Improved version:</Heading4>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
-				{`interface DataSource {
+interface DataSource {
     getData(): Data;
 }
 
@@ -434,17 +380,12 @@ class Report {
 				replaced independently, adhering to the Dependency Inversion
 				Principle.
 			</Paragraph>
-
-			<Heading3>
-				b) Fragility: Changes in one part of the code unexpectedly break
-				other, seemingly unrelated parts.
-			</Heading3>
-
-			<Heading4>Example of fragile code:</Heading4>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
+			<Heading3>b) Fragility</Heading3>
+			<Paragraph>
+				Changes in one part of the code unexpectedly break other seemingly
+				unrelated parts.
+			</Paragraph>
+			<CodeBlock language="typescript" fileName="badExample.ts">
 				{`class UserService {
     registerUser(username: string, email: string): void {
         // Register user
@@ -466,13 +407,16 @@ class Report {
 				being updated, even though these operations are not logically
 				dependent.
 			</Paragraph>
+			<CodeBlock language="typescript" fileName="improvedExample.ts">
+				{`interface EmailService {
+    sendWelcomeEmail(username: string, email: string): void;
+}
 
-			<Heading4>Improved version:</Heading4>
-			<CodeBlock
-				language="typescript"
-				commentedOutFileName="// goodExample.ts"
-			>
-				{`class UserService {
+interface UserCountService {
+    incrementUserCount(): void;
+}
+
+class UserService {
     constructor(
         private emailService: EmailService,
         private countService: UserCountService
@@ -494,7 +438,6 @@ class Report {
 				This version separates concerns and ensures that a failure in one
 				operation doesn't affect others, making the system more robust.
 			</Paragraph>
-
 			<Heading2>Conclusion</Heading2>
 			<Paragraph>
 				'Clean Code' remains a pivotal text in software development,
