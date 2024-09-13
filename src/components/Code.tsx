@@ -1,13 +1,47 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import type { SyntaxHighlighterProps } from 'react-syntax-highlighter';
 
 interface CodeBlockProps extends Omit<SyntaxHighlighterProps, 'language'> {
-	language: 'javascript' | 'typescript' | 'html' | 'css' | 'tsx';
-	commentedOutFileName: string;
+	language:
+		| 'javascript'
+		| 'typescript'
+		| 'html'
+		| 'css'
+		| 'tsx'
+		| 'plaintext'
+		| 'bash'
+		| 'json';
+	fileName: string;
+	disableLineNumbers?: boolean;
+}
+
+type LanguageFormatting = {
+	[key: string]: string;
+};
+
+const languageFormats: LanguageFormatting = {
+	typescript: 'TypeScript',
+	javascript: 'JavaScript',
+	jsx: 'JSX',
+	tsx: 'TSX',
+	html: 'HTML',
+	css: 'CSS',
+	scss: 'SCSS',
+	less: 'Less',
+	json: 'JSON',
+	yaml: 'YAML',
+	markdown: 'Markdown',
+	php: 'PHP',
+	csharp: 'C#',
+	cpp: 'C++',
+};
+
+function formatLanguage(language: string): string {
+	return languageFormats[language];
 }
 
 export const InlineCode = ({
@@ -15,7 +49,7 @@ export const InlineCode = ({
 	...props
 }: React.HTMLAttributes<HTMLElement>) => (
 	<code
-		className="text-base bg-gray-200 text-indigo-600 rounded px-1 py-0.5 font-mono"
+		className="text-sm border  border-gray-200 bg-gray-100 text-black rounded px-2 py-0.5 font-mono"
 		{...props}
 	>
 		{children}
@@ -24,12 +58,12 @@ export const InlineCode = ({
 
 export const CodeBlock = ({
 	language,
-	commentedOutFileName,
+	fileName,
+	disableLineNumbers = false,
 	children,
 	...props
 }: CodeBlockProps) => {
 	const [copied, setCopied] = useState(false);
-	const [showTooltip, setShowTooltip] = useState(false);
 
 	const handleCopyClick = () => {
 		if (typeof children === 'string') {
@@ -44,88 +78,91 @@ export const CodeBlock = ({
 	return (
 		<div
 			className={clsx(
-				'rounded-none sm:rounded-md',
-				'border-2  border-neutral-200',
-				'bg-neutral-50',
-				'sm:mx-0',
-				'mx-[-1rem]',
-				'sm:w-auto',
-				'w-screen'
+				'rounded-none sm:rounded-lg',
+				'border  border-gray-200',
+				// 'border  border-black',
+				'mx-[-1rem] sm:mx-0',
+				'my-4',
+				'w-screen sm:w-auto'
 			)}
 		>
 			<div
 				className={clsx(
 					'flex justify-between items-center',
-					'px-3 py-2',
-					'bg-neutral-200'
+					'pl-5 pr-2',
+					'h-12',
+					' bg-gray-100',
+					'rounded-none sm:rounded-t-lg',
+					'border-b border-b-gray-200'
 				)}
 			>
 				<div>
-					<span className="italic font-mono text-md text-gray-600 dark:text-gray-400">
-						{commentedOutFileName}
+					<span className="text-sm text-gray-500 dark:text-gray-400">
+						{fileName}
 					</span>
 				</div>
-				{showTooltip && !copied && (
-					<div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-gray-600 bg-gray-800 rounded shadow-lg">
-						Copy code
-					</div>
-				)}
-				<button
-					onClick={handleCopyClick}
-					onMouseEnter={() => setShowTooltip(true)}
-					onMouseLeave={() => setShowTooltip(false)}
-					aria-label="Copy code"
-					className={clsx(
-						'flex items-center',
-						'px-2 py-1 space-x-1',
-						'hover:opacity-80',
-						'rounded'
-					)}
-				>
-					<span className="text-base text-center">
-						<span
-							className={clsx(
-								'inline-block',
-								'transition-all duration-200 ease-in-out',
-								'text-gray-600',
-								copied || showTooltip
-									? 'opacity-100 transform'
-									: 'opacity-0 transform'
-							)}
-						>
-							{copied ? 'Copied!' : showTooltip ? 'Copy code' : ''}
-						</span>
+				<div className="flex items-center">
+					<span className="text-base text-center text-gray-500 mr-2">
+						{formatLanguage(language)}
 					</span>
-					<span className="text-2xl relative w-8 h-8 flex items-center justify-center">
-						<span
-							className={clsx(
-								'absolute transition-all duration-200 ease-in-out',
-								copied ? 'opacity-100 transform' : 'opacity-0 transform'
-							)}
-						>
-							✅
+					<button
+						onClick={handleCopyClick}
+						aria-label="Copy code"
+						className={clsx(
+							'flex items-center',
+							'rounded',
+							'hover:opacity-80'
+						)}
+					>
+						<span className="text-2xl relative w-8 h-8 flex items-center justify-center">
+							<span
+								className={clsx(
+									'absolute transition-all duration-200 ease-in-out',
+									copied
+										? 'opacity-100 transform'
+										: 'opacity-0 transform'
+								)}
+							>
+								✅
+							</span>
+							<span
+								className={clsx(
+									'absolute transition-all duration-200 ease-in-out',
+									!copied
+										? 'opacity-100 transform'
+										: 'opacity-0 transform'
+								)}
+							>
+								📋
+							</span>
 						</span>
-						<span
-							className={clsx(
-								'absolute transition-all duration-200 ease-in-out',
-								!copied
-									? 'opacity-100 transform'
-									: 'opacity-0 transform'
-							)}
-						>
-							📋
-						</span>
-					</span>
-				</button>
+					</button>
+				</div>
 			</div>
 			<SyntaxHighlighter
 				language={language}
-				className={clsx(
-					'rounded-lg overflow-x-auto',
-					'py-2 pt-0 px-3',
-					'text-base'
-				)}
-				style={oneLight}
+				showLineNumbers={!disableLineNumbers}
+				className={clsx('overflow-x-auto', 'text-sm', 'rounded-b-md')}
+				style={{
+					...oneLight,
+					'pre[class*="language-"]': {
+						...oneLight['pre[class*="language-"]'],
+						background: 'transparent',
+						margin: 0,
+						padding: 20,
+						borderTopLeftRadius: 0,
+						borderTopRightRadius: 0,
+					},
+					'code[class*="language-"]': {
+						...oneLight['code[class*="language-"]'],
+						background: 'transparent',
+					},
+					'react-syntax-highlighter-line-number': {
+						fontStyle: 'normal',
+						paddingRight: 20,
+						color: '#9ca3af',
+					},
+				}}
 				{...props}
 			>
 				{typeof children === 'string' ? children.trim() : ''}
