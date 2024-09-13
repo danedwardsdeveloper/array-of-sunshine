@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { generateArticleMetadata } from '@/library/metadata';
 import { article } from './data';
 import { ArticleLayout } from '@/components/ArticleLayout';
-import { ExternalLink } from '@/components/Links';
+import StyledLink from '@/components/StyledLink';
 import Paragraph from '@/components/Paragraph';
 import { Heading2 } from '@/components/Headings';
 import { AdditionalImage } from '@/components/Images';
@@ -19,47 +19,47 @@ export default function Page() {
 		<ArticleLayout article={article}>
 			<Paragraph>
 				As a big fan of{' '}
-				<ExternalLink
+				<StyledLink
 					ariaLabel="Happy Halley, MetaCritic"
 					href="https://www.metacritic.com/tv/happy-valley/"
 				>
 					Happy Valley
-				</ExternalLink>
+				</StyledLink>
 				, I recently visited the gorgeous West Yorkshire market town of
 				Hebden Bridge, hoping to see some of the streets where my favourite
 				police drama was filmed. I had forgotten that it is also the the{' '}
-				<ExternalLink
+				<StyledLink
 					ariaLabel="BBC News | Hebden Bridge is the UK's lesbian capital"
 					href="https://www.bbc.co.uk/news/magazine-16962898"
 				>
 					UK's lesbian capital
-				</ExternalLink>
+				</StyledLink>
 				, so of course, when I went into its delightful{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://bookcasehebden.wordpress.com/"
 					ariaLabel="Delightful independent bookshop in Hebden Bridge"
 				>
 					independent bookshop
-				</ExternalLink>
+				</StyledLink>
 				, copies of Anne Lister's Secret Diaries were prominently on
 				display.
 			</Paragraph>
 			<Paragraph>
-				<ExternalLink
+				<StyledLink
 					href="https://en.wikipedia.org/wiki/Anne_Lister"
 					ariaLabel="Anne Lister, Wikipedia page"
 				>
 					Anne Lister
-				</ExternalLink>{' '}
+				</StyledLink>{' '}
 				(1791 - 1840) was from a minor landowning family, and is sometimes
 				known as 'the first modern lesbian'. I had seen the BBC
 				dramatisation of her fascinating life,{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://www.metacritic.com/tv/gentleman-jack/"
 					ariaLabel="Gentleman Jack on Metacritic"
 				>
 					Gentleman Jack
-				</ExternalLink>
+				</StyledLink>
 				, so I was immediately interested. I knew she had a strong
 				personality, eccentric habits, a masculine appearance, and
 				challenged the status-quo, but I didn't know that her diaries were
@@ -120,12 +120,12 @@ export default function Page() {
 				bringing Anne Lister's story into the public view. This was a
 				laborious endeavour, as the handwriting was very small, and the
 				letters{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://www.janeaustensummer.org/post/caught-in-the-cross-writing"
 					ariaLabel="Explanation of cross-writing"
 				>
 					cross-written
-				</ExternalLink>{' '}
+				</StyledLink>{' '}
 				- a common practice in the nineteenth century due to the cost of
 				paper.
 			</Paragraph>
@@ -156,12 +156,12 @@ export default function Page() {
 				homosexuality was historically more tolerated than its male
 				counterpart. The myth that Queen Victoria didn't explicitly
 				criminalise lesbian sex because she didn't believe it occurred{' '}
-				<ExternalLink
+				<StyledLink
 					href="https://www.open.edu/openlearn/society-politics-law/law/lesbianism-and-the-criminal-law-england-and-wales"
 					ariaLabel="Article on lesbianism and criminal law in England and Wales"
 				>
 					is not true
-				</ExternalLink>
+				</StyledLink>
 				. Lesbians were, in fact, persecuted since at least the end of the
 				17th century, and societal pressures were indeed suffocating, as the
 				diaries so plainly attest.
