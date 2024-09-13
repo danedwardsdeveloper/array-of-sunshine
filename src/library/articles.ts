@@ -5,6 +5,9 @@ import { StaticImageData } from 'next/image';
 type Writer = 'Dan Edwards' | 'Google Gemini';
 
 export interface IArticle {
+	/** Sentence case with a colon
+	 * Example: "Creating a complex React root: order and dependencies"
+	 */
 	title: string;
 	description: string;
 	writer: Writer;
@@ -15,10 +18,11 @@ export interface IArticle {
 	 */
 	keywords: string;
 
-	/** Landscape meta image exactly 1,200 x 675px */
+	/** Landscape meta image, PNG exactly 1,200 x 675px */
 	featuredImage: StaticImageData;
 
-	/**Year-Month-Day: '2024-09-04' */
+	/**Year-Month-Day
+	 * Example: '2024-09-04' */
 	date: string;
 }
 
