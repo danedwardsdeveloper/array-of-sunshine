@@ -1,4 +1,4 @@
-import { ExternalLink } from '@/components/Links';
+import StyledLink from '@/components/StyledLink';
 import ArticlesList from '@/components/ArticlesList';
 
 export default function Page() {
@@ -12,14 +12,14 @@ export default function Page() {
 				development insights! I'm Dan Edwards, a passionate developer on a
 				mission to brighten up the cloudy world of coding and illuminate a
 				path through the ever-evolving landscape of modern web technologies.
-				I'm a Node.js developer, I write everything in TypeScript, and I'm
-				obsessed with Next.js. Check out my{' '}
-				<ExternalLink
+				I'm a Node.js developer, and I write everything in TypeScript.
+				Currently obsessed with Next.js. Check out my{' '}
+				<StyledLink
 					href="https://danedwardsdeveloper.com/"
-					ariaLabel={`Dan Edwards' Resume`}
+					ariaLabel={`Dan Edwards' Résumé`}
 				>
-					resume
-				</ExternalLink>
+					résumé
+				</StyledLink>
 				.
 			</p>
 			<div className="my-8">
