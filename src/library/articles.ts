@@ -9,6 +9,10 @@ export interface IArticle {
 	description: string;
 	writer: Writer;
 	tags: string;
+
+	/** Lowercase, separated with a comma and space
+	 * 	Example; 'react, next.js, front-end'
+	 */
 	keywords: string;
 
 	/** Landscape meta image exactly 1,200 x 675px */
