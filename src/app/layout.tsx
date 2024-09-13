@@ -106,9 +106,7 @@ export default function RootLayout({
 				)}
 			>
 				<Providers>
-					<main
-						className={clsx('flex-auto flex flex-col min-w-0', ' mt-6')}
-					>
+					<main className={clsx('flex-auto flex flex-col min-w-0')}>
 						<Menu />
 						{children}
 						<Footer />
