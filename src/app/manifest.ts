@@ -9,12 +9,8 @@ export default function manifest(): MetadataRoute.Manifest {
 		description: defaultMetaDescription,
 		start_url: '/',
 		display: 'standalone',
-
-		// Light gray for the splash screen
-		background_color: '#F8F8F8',
-
-		// Black text
-		theme_color: '#FFFFFF',
+		background_color: '#000',
+		theme_color: '#000',
 		icons: [
 			{
 				src: '/favicon/icon-192.png',
