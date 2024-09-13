@@ -46,9 +46,9 @@ export const metadata: Metadata = {
 		images: [
 			{
 				url: defaultSocialImage.absoluteUrl,
-				width: 1200,
-				height: 675,
-				alt: 'Array of Sunshine web dev blog',
+				width: defaultSocialImage.width,
+				height: defaultSocialImage.height,
+				alt: defaultSocialImage.alt,
 			},
 		],
 	},
