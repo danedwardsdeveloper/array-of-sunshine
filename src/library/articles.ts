@@ -4,6 +4,19 @@ import { StaticImageData } from 'next/image';
 
 type Writer = 'Dan Edwards' | 'Google Gemini';
 
+type Tag =
+	| 'HTML'
+	| 'CSS'
+	| 'JavaScript'
+	| 'TypeScript'
+	| 'Book review'
+	| 'History'
+	| 'React'
+	| 'Next'
+	| 'Tailwind'
+	| 'Codecademy'
+	| 'Philosophy';
+
 export interface IArticle {
 	/** Sentence case with a colon
 	 * Example: "Creating a complex React root: order and dependencies"
@@ -11,7 +24,7 @@ export interface IArticle {
 	title: string;
 	description: string;
 	writer: Writer;
-	tags: string;
+	tags: Tag[];
 
 	/** Lowercase, separated with a comma and space
 	 * 	Example; 'react, next.js, front-end'
