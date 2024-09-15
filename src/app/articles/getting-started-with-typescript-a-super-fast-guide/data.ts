@@ -10,7 +10,7 @@ export const article: IArticle = {
 	description: `A concise guide on setting up a TypeScript project with minimal configuration, including project structure, dependency installation, and basic TypeScript usage.`,
 	keywords:
 		'TypeScript setup, pnpm, tsx, nodemon, tsconfig, Project initialization, Dependency management, TypeScript configuration, Development workflow',
-	tags: 'TypeScript',
+	tags: ['TypeScript'],
 	featuredImage: typeScriptImage,
 };
 
