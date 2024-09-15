@@ -2,8 +2,8 @@ import Image, { StaticImageData } from 'next/image';
 import clsx from 'clsx';
 
 const baseContainerStyles = `w-full my-4`;
-const baseImageStyles = `rounded-md w-full h-auto`;
-const borderStyles = 'border-2 border-gray-300 rounded-md';
+const baseImageStyles = `rounded-lg w-full h-auto`;
+const borderStyles = 'border-2 border-gray-300 rounded-lg';
 const sizes =
 	'(max-width: 1023px) calc(100vw - 2rem), min(calc(100vw - 2rem), 576px)';
 
