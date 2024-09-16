@@ -16,8 +16,7 @@ const cleanedEnv = cleanEnv(process.env, envConfig);
 const isProduction = cleanedEnv.ENVIRONMENT === 'production';
 const isDevelopment = cleanedEnv.ENVIRONMENT === 'development';
 
-// Remember to change this when you point to the custom domain
-const productionBaseURL = 'https://array-of-sunshine.fly.dev';
+const productionBaseURL = 'https://arrayofsunshine.co.uk';
 const developmentBaseURL = 'http://localhost:3000';
 const dynamicBaseURL = isProduction ? productionBaseURL : developmentBaseURL;
 
