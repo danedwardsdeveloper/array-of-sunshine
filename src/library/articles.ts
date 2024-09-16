@@ -15,7 +15,10 @@ type Tag =
 	| 'Next'
 	| 'Tailwind'
 	| 'Codecademy'
-	| 'Philosophy';
+	| 'Philosophy'
+	| 'Vite'
+	| 'VS Code'
+	| 'MDX';
 
 export interface IArticle {
 	/** Sentence case with a colon
