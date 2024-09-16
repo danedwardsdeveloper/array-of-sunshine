@@ -4,7 +4,7 @@ import { type IArticle } from '@/library/articles';
 import htmlCssJohnDuckettBook from '../../../../public/images/social-png/html-css-john-duckett-book.png';
 
 export const article: IArticle = {
-	title: 'HTML & CSS by Jon Duckett. Is it still relevant?',
+	title: 'HTML & CSS by Jon Duckett: is it still relevant?',
 	date: '2024-05-08',
 	writer: 'Dan Edwards',
 	tags: ['Book review', 'HTML', 'CSS'],
