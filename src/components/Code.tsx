@@ -15,7 +15,8 @@ interface CodeBlockProps extends Omit<SyntaxHighlighterProps, 'language'> {
 		| 'jsx'
 		| 'plaintext'
 		| 'bash'
-		| 'json';
+		| 'json'
+		| 'mjs';
 	fileName: string;
 	disableLineNumbers?: boolean;
 }
@@ -29,6 +30,7 @@ const languageFormats: LanguageFormatting = {
 	javascript: 'JavaScript',
 	jsx: 'JSX',
 	tsx: 'TSX',
+	mjs: 'MJS',
 	html: 'HTML',
 	css: 'CSS',
 	scss: 'SCSS',
@@ -45,12 +47,17 @@ function formatLanguage(language: string): string {
 	return languageFormats[language];
 }
 
+const mapLanguage = (lang: string) => {
+	if (lang === 'mjs') return 'javascript';
+	return lang;
+};
+
 export const InlineCode = ({
 	children,
 	...props
 }: React.HTMLAttributes<HTMLElement>) => (
 	<code
-		className="text-sm border  border-gray-200 bg-gray-100 text-black rounded px-2 py-0.5 font-mono"
+		className="text-sm border  border-gray-200 bg-gray-100 text-black rounded px-2 py-0.5 font-mono break-words"
 		{...props}
 	>
 		{children}
@@ -77,23 +84,14 @@ export const CodeBlock = ({
 	};
 
 	return (
-		<div
-			className={clsx(
-				'rounded-none sm:rounded-lg',
-				'border  border-gray-200',
-				// 'border  border-black',
-				'mx-[-1rem] sm:mx-0',
-				'my-4',
-				'w-screen sm:w-auto'
-			)}
-		>
+		<div className={clsx('rounded-lg', 'border  border-gray-200', 'my-4')}>
 			<div
 				className={clsx(
 					'flex justify-between items-center',
 					'pl-5 pr-2',
 					'h-12',
 					' bg-gray-100',
-					'rounded-none sm:rounded-t-lg',
+					'rounded-t-lg',
 					'border-b border-b-gray-200'
 				)}
 			>
@@ -141,7 +139,7 @@ export const CodeBlock = ({
 				</div>
 			</div>
 			<SyntaxHighlighter
-				language={language}
+				language={mapLanguage(language)}
 				showLineNumbers={!disableLineNumbers}
 				className={clsx('overflow-x-auto', 'text-sm', 'rounded-b-md')}
 				style={{
