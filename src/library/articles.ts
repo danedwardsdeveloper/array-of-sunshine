@@ -18,7 +18,8 @@ type Tag =
 	| 'Philosophy'
 	| 'Vite'
 	| 'VS Code'
-	| 'MDX';
+	| 'MDX'
+	| 'Analytics';
 
 export interface IArticle {
 	/** Sentence case with a colon
