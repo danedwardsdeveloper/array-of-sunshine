@@ -1,3 +1,3 @@
-# Array of Sunshine
+# [Array of Sunshine](https://arrayofsunshine.co.uk)
 
-Next.js version of my existing React site (Array of Sunshine)[https://arrayofsunshine.co.uk]
+Next.js coding blog
