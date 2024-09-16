@@ -4,6 +4,14 @@ const nextConfig = {
 		formats: ['image/webp'],
 		deviceSizes: [576],
 		imageSizes: [],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'simpleanalyticsbadges.com',
+				port: '',
+				pathname: '/**',
+			},
+		],
 	},
 	output: 'standalone',
 };
