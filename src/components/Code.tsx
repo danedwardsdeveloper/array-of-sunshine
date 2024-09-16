@@ -12,6 +12,7 @@ interface CodeBlockProps extends Omit<SyntaxHighlighterProps, 'language'> {
 		| 'html'
 		| 'css'
 		| 'tsx'
+		| 'jsx'
 		| 'plaintext'
 		| 'bash'
 		| 'json';
