@@ -1,7 +1,7 @@
-import './global.tailwind.css';
-import Script from 'next/script';
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import clsx from 'clsx';
+import './global.tailwind.css';
 
 import { validateEnvironment, environment } from '@/library/environment';
 import {
@@ -77,8 +77,25 @@ export const viewport: Viewport = {
 	initialScale: 1,
 };
 
-function SimpleAnalyticScript() {
-	return <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />;
+function SimpleAnalyticsScript() {
+	return (
+		<>
+			<Script
+				async
+				defer
+				src="https://scripts.simpleanalyticscdn.com/latest.js"
+				strategy="afterInteractive"
+			></Script>
+			<noscript>
+				<img
+					src="https://queue.simpleanalyticscdn.com/noscript.gif"
+					alt="Simple Analytics no script gif"
+					referrerPolicy="no-referrer-when-downgrade"
+					loading="lazy"
+				/>
+			</noscript>
+		</>
+	);
 }
 
 export default function RootLayout({
@@ -100,8 +117,8 @@ export default function RootLayout({
 			<body
 				className={clsx(
 					'antialiased',
-					'max-w-xl',
-					'mx-4 lg:mx-auto',
+					'md:max-w-xl',
+					'mx-4 md:mx-auto',
 					'mt-8'
 				)}
 			>
@@ -112,7 +129,7 @@ export default function RootLayout({
 						<Footer />
 					</main>
 				</Providers>
-				{environment.isProduction && <SimpleAnalyticScript />}
+				{environment.isProduction && <SimpleAnalyticsScript />}
 			</body>
 		</html>
 	);
