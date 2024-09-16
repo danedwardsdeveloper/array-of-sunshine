@@ -11,7 +11,7 @@ export const defaultMetaTitle = `Array of Sunshine | Full-Stack Web Dev Insights
 export const defaultMetaDescription = `Explore Array of Sunshine, a coding blog by Dan Edwards covering full-stack web development. Dive into Node.js, TypeScript, React, Next.js, Express, MongoDB, and MERN stack applications. Level up your web dev skills today!`;
 
 export const defaultSocialImage = {
-	absoluteUrl: `${environment.productionBaseURL}/images/social-png/array-of-sunshine.png`,
+	absoluteUrl: `${environment.productionBaseURL}/images/social-png/array-of-sunshine-social.png`,
 	alt: 'Array of Sunshine | Full-Stack Web Dev Blog',
 	height: 675,
 	width: 1200,
