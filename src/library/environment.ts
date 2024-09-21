@@ -1,4 +1,4 @@
-import { cleanEnv, makeValidator, url } from 'envalid';
+import { cleanEnv, makeValidator } from 'envalid';
 
 const nonEmptyStr = makeValidator((value) => {
 	if (value.trim() === '') throw new Error('Value cannot be an empty string');
@@ -7,8 +7,6 @@ const nonEmptyStr = makeValidator((value) => {
 
 const envConfig = {
 	ENVIRONMENT: nonEmptyStr({ choices: ['development', 'production'] }),
-	// MAILCHIMP_URL: nonEmptyStr(url()),
-	// MAILCHIMP_API_KEY: nonEmptyStr(),
 };
 
 const cleanedEnv = cleanEnv(process.env, envConfig);
