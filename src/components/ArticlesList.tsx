@@ -16,7 +16,10 @@ export default async function ArticlesList() {
 				<Link
 					key={article.slug}
 					href={`/articles/${article.slug}`}
-					className={clsx('flex flex-col space-y-1 mb-4')}
+					className={clsx(
+						'flex flex-col space-y-1 my-3 p-1',
+						'hover:bg-orange-50 rounded-md transition-all duration-300'
+					)}
 				>
 					<div
 						className={clsx(
