@@ -26,6 +26,7 @@ export interface IArticle {
 	 * Example: "Creating a complex React root: order and dependencies"
 	 */
 	title: string;
+	seoTitle?: string;
 	description: string;
 	writer: Writer;
 	tags: Tag[];
