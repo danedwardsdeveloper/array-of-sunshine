@@ -19,10 +19,7 @@ import { Providers } from '@/app/providers';
 validateEnvironment();
 
 export const metadata: Metadata = {
-	title: {
-		default: defaultMetaTitle,
-		template: '%s | Array of Sunshine, Full-Stack Web Dev Blog',
-	},
+	title: defaultMetaTitle,
 	description: defaultMetaDescription,
 	keywords: [
 		'web development',
