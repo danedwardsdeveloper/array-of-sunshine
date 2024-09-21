@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { type Metadata } from 'next';
 import { type IArticle } from '@/library/articles';
 import reactImage from '../../../../public/images/social-png/complex-react-root-order.png';
 
