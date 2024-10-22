@@ -3,7 +3,7 @@ import Script from 'next/script';
 import clsx from 'clsx';
 import './global.tailwind.css';
 
-import { validateEnvironment, environment } from '@/library/environment';
+import { environment } from '@/library/environment';
 import {
 	siteName,
 	defaultMetaTitle,
@@ -15,8 +15,6 @@ import { GeistMono } from 'geist/font/mono';
 import Menu from '@/components/Menu';
 import Footer from '@/components/Footer';
 import { Providers } from '@/app/providers';
-
-validateEnvironment();
 
 export const metadata: Metadata = {
 	title: defaultMetaTitle,
