@@ -37,6 +37,7 @@ export interface IArticle {
 	keywords: string;
 
 	/** Landscape meta image, PNG exactly 1,200 x 675px */
+	socialImage?: StaticImageData;
 	featuredImage: StaticImageData;
 
 	/**Year-Month-Day
