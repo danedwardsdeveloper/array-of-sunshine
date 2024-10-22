@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 interface StyledLinkProps {
 	href: string;
-	ariaLabel: string;
+	ariaLabel?: string;
 	className?: string;
 	children: ReactNode;
 }
