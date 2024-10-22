@@ -1,11 +1,16 @@
 import { type Metadata } from 'next';
 
+import { environment } from '@/library/environment';
+
 import ArticlesList from '@/components/ArticlesList';
 
 export const metadata: Metadata = {
-	title: 'Articles',
+	title: 'Articles | Array of Sunshine, a coding blog by Dan Edwards.',
 	description:
-		'All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.',
+		'A coding blog covering full-stack web development, Node.js, TypeScript, React, Next.js, Express, MongoDB, and MERN stack applications.',
+	alternates: {
+		canonical: `${environment.productionBaseURL}/articles`,
+	},
 };
 
 export default function ArticlesPage() {
