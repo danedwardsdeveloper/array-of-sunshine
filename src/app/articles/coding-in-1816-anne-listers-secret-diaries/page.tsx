@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { article } from './data';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import StyledLink from '@/components/StyledLink';
@@ -11,7 +11,10 @@ import { AdditionalImage } from '@/components/Images';
 import crossWritingImage from '../../../../public/images/regular-webp/cross-writing.webp';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'coding-in-1816-anne-listers-secret-diaries',
+	});
 };
 
 export default function Page() {

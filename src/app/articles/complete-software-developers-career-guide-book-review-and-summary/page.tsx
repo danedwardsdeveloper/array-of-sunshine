@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
@@ -16,7 +16,10 @@ import wearASuit from '../../../../public/images/regular-webp/career-guide/wear-
 import { AdditionalImage } from '@/components/Images';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'complete-software-developers-career-guide-book-review-and-summary',
+	});
 };
 
 export default function Page() {

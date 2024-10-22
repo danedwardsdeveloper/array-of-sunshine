@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { article } from './data';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
@@ -9,7 +9,10 @@ import { Heading2, Heading3 } from '@/components/Headings';
 import StyledLink from '@/components/StyledLink';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'clean-code-robert-c-martin-summary-with-typescript-examples',
+	});
 };
 
 export default function Page() {

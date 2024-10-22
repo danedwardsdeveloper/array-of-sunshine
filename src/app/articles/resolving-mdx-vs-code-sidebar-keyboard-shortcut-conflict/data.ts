@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { type IArticle } from '@/library/articles';
 import mdxImage from '../../../../public/images/social-png/mdx-vs-code-sidebar-keyboard-shortcut-conflict.png';
 
@@ -11,9 +9,4 @@ export const article: IArticle = {
 	keywords: `MDX, Visual Studio Code, VS Code, keyboard shortcuts, sidebar, TSX, React, web development`,
 	tags: ['MDX', 'VS Code'],
 	featuredImage: mdxImage,
-};
-
-export const metadata: Metadata = {
-	title: article.title,
-	description: article.description,
 };

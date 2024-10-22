@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
 import StyledLink from '@/components/StyledLink';
@@ -13,7 +13,10 @@ import { UnorderedList, ListItem } from '@/components/Lists';
 import gettingStarted from '../../../../public/images/regular-webp/getting-started-with-typescript.webp';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'getting-started-with-typescript-a-super-fast-guide',
+	});
 };
 
 export default function Page() {

@@ -1,17 +1,19 @@
 import { Metadata } from 'next';
+
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
-import { CodeBlock, InlineCode } from '@/components/Code';
+import { InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
 import { Heading2, Heading3 } from '@/components/Headings';
-import { AdditionalImage } from '@/components/Images';
-import { OrderedList, UnorderedList, ListItem } from '@/components/Lists';
-import BlockQuote from '@/components/BlockQuote';
+import { UnorderedList, ListItem } from '@/components/Lists';
 import StyledLink from '@/components/StyledLink';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'html-and-css-by-john-duckett-is-it-still-relevant',
+	});
 };
 
 export default function Page() {

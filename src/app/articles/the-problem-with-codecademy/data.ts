@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { type IArticle } from '@/library/articles';
 import featuredImage from '../../../../public/images/social-png/codecademy-problem.png';
 
@@ -11,9 +9,4 @@ export const article: IArticle = {
 	keywords: `Codecademy Full-Stack Pathway, web development, coding courses, online learning platforms, coding certification, programming portfolio, coding job market, self-directed learning, coding skills development, programming career advice, real-world coding projects, job-ready coding skills`,
 	tags: ['Codecademy', 'Philosophy'],
 	featuredImage: featuredImage,
-};
-
-export const metadata: Metadata = {
-	title: article.title,
-	description: article.description,
 };

@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { type IArticle } from '@/library/articles';
 import mimeTypeErrorPhoto from '../../../../public/images/social-png/mime-type-error.png';
 
@@ -11,9 +9,4 @@ export const article: IArticle = {
 	keywords: `React, MIME type error, JavaScript module, Vite, Next.js, JSX, TSX, file extensions, text/html, application/octet-stream, not executable`,
 	tags: ['React', 'JavaScript', 'TypeScript', 'Vite'],
 	featuredImage: mimeTypeErrorPhoto,
-};
-
-export const metadata: Metadata = {
-	title: article.title,
-	description: article.description,
 };

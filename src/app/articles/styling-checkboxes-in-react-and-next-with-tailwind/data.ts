@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { type IArticle } from '@/library/articles';
 import reactTailwindCheckboxes from '../../../../public/images/social-png/react-tailwind-checkboxes.webp';
 
@@ -11,9 +9,4 @@ export const article: IArticle = {
 	keywords: `Tailwind, CSS, checkbox customization, React, form styling, CSS classes, @tailwindcss/forms plugin, web design, front-end development`,
 	tags: ['React', 'Next', 'Tailwind'],
 	featuredImage: reactTailwindCheckboxes,
-};
-
-export const metadata: Metadata = {
-	title: article.title,
-	description: article.description,
 };

@@ -1,14 +1,17 @@
 import { Metadata } from 'next';
 
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
 import { Heading2 } from '@/components/Headings';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'resolving-vite-react-mime-type-errors',
+	});
 };
 
 export default function Page() {

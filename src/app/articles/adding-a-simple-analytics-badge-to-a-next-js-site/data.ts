@@ -1,6 +1,5 @@
-import { Metadata } from 'next';
-
 import { type IArticle } from '@/library/articles';
+
 import simpleAnalyticsImage from '../../../../public/images/social-png/simple-analytics-badge-next-js.png';
 
 export const article: IArticle = {
@@ -11,9 +10,4 @@ export const article: IArticle = {
 	keywords: `Simple Analytics, Next.js, privacy-friendly analytics, web development`,
 	tags: ['Next', 'Analytics'],
 	featuredImage: simpleAnalyticsImage,
-};
-
-export const metadata: Metadata = {
-	title: article.title,
-	description: article.description,
 };

@@ -1,5 +1,3 @@
-import { Metadata } from 'next';
-
 import { type IArticle } from '@/library/articles';
 import typeScriptImage from '../../../../public/images/social-png/typescript.png';
 
@@ -12,9 +10,4 @@ export const article: IArticle = {
 		'TypeScript setup, pnpm, tsx, nodemon, tsconfig, Project initialization, Dependency management, TypeScript configuration, Development workflow',
 	tags: ['TypeScript'],
 	featuredImage: typeScriptImage,
-};
-
-export const metadata: Metadata = {
-	title: article.title,
-	description: article.description,
 };

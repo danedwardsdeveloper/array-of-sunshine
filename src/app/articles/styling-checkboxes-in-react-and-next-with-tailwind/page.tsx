@@ -1,17 +1,19 @@
 import { Metadata } from 'next';
 
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { CodeBlock, InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
 import { Heading2, Heading3 } from '@/components/Headings';
-import { UnorderedList, ListItem } from '@/components/Lists';
 import StyledLink from '@/components/StyledLink';
 import Checkbox from './Checkbox';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'styling-checkboxes-in-react-and-next-with-tailwind',
+	});
 };
 
 export default function Page() {

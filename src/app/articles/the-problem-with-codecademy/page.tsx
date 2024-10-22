@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import Paragraph from '@/components/Paragraph';
 import { Heading2, Heading3 } from '@/components/Headings';
@@ -13,7 +13,10 @@ import StyledLink from '@/components/StyledLink';
 import SchoolOfLifeBook from '../../../../public/images/regular-webp/what-they-forgot-to-teach-you-at-school-school-of-life-book.webp';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'the-problem-with-codecademy',
+	});
 };
 
 export default function Page() {

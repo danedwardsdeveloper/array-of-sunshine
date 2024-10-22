@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 import { article } from './data';
-import { generateArticleMetadata } from '@/library/metadata';
+import { generateArticleMetadata } from '@/library/articleMetadata';
 import { ArticleLayout } from '@/components/ArticleLayout';
 import { InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
@@ -10,7 +10,10 @@ import { OrderedList, UnorderedList, ListItem } from '@/components/Lists';
 import StyledLink from '@/components/StyledLink';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata(article);
+	return generateArticleMetadata({
+		...article,
+		slug: 'resolving-mdx-vs-code-sidebar-keyboard-shortcut-conflict',
+	});
 };
 
 export default function Page() {
