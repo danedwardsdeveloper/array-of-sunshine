@@ -1,9 +1,9 @@
-import { type IArticle } from '@/library/articles';
+import { IArticleWithSlug } from '@/library/articles';
+
 import socialImage from '../../../../public/images/social-png/next-js-ignore-folder.png';
+import featuredImage from './next-js-ignore-folder.webp';
 
-import featuredImage from './images/next-js-ignore-folder.png';
-
-export const article: IArticle = {
+export const article: IArticleWithSlug = {
 	writer: `Dan Edwards`,
 	date: `2024-10-22`,
 	title: `Next.js: how to ignore/exclude a folder when running "next build"`,
@@ -12,4 +12,5 @@ export const article: IArticle = {
 	tags: ['Next'],
 	socialImage: socialImage,
 	featuredImage: featuredImage,
+	slug: 'next-js-how-to-ignore-exclude-a-folder-when-running-next-build',
 };
