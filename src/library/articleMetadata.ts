@@ -63,7 +63,7 @@ export function generateArticleMetadata(article: IArticleWithSlug): Metadata {
 			images: [absoluteImageURL],
 		},
 		alternates: {
-			canonical: `${environment.productionBaseURL}/${article.slug}`,
+			canonical: `${environment.productionBaseURL}/articles/${article.slug}`,
 		},
 		robots: {
 			index: true,
