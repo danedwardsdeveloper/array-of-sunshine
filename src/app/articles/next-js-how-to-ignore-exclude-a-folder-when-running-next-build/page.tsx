@@ -7,10 +7,7 @@ import { CodeBlock, InlineCode } from '@/components/Code';
 import Paragraph from '@/components/Paragraph';
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata({
-		...article,
-		slug: 'next-js-how-to-ignore-exclude-a-folder-when-running-next-build',
-	});
+	return generateArticleMetadata(article);
 };
 
 export default function Page() {
