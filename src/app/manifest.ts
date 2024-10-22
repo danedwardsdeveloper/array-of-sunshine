@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 
-import { defaultMetaTitle, defaultMetaDescription } from '@/library/metadata';
+import {
+	defaultMetaTitle,
+	defaultMetaDescription,
+} from '@/library/articleMetadata';
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
