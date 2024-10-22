@@ -71,7 +71,6 @@ export async function getAllArticles(): Promise<IArticleWithSlug[]> {
 	try {
 		const articlePaths = await glob('src/app/articles/*', {
 			onlyDirectories: true,
-			ignore: ['_work-in-progress'],
 		});
 
 		const articles = await Promise.all(
