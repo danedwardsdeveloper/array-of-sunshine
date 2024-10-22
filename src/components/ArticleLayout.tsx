@@ -1,7 +1,7 @@
 import { type IArticle } from '@/library/articles';
 import formatDate from '@/library/formatDate';
 import { FeaturedImage } from './Images';
-import { siteName } from '@/library/metadata';
+import { siteName } from '@/library/articleMetadata';
 
 export function generateSEOMetadata(article: IArticle) {
 	return {
@@ -53,7 +53,7 @@ export function ArticleLayout({
 				</p>
 			</div>
 			<FeaturedImage
-				image={article.featuredImage}
+				image={article.socialImage || article.featuredImage}
 				alt={article.title}
 				border={borderOnFeaturedImage}
 			/>
