@@ -36,7 +36,7 @@ export default async function ArticlesList() {
 						</p>
 						<p
 							className={clsx(
-								'text-neutral-900 dark:text-neutral-100 tracking-tight'
+								'text-neutral-900 dark:text-neutral-100 tracking-tight text-balance'
 							)}
 						>
 							{article.title}
