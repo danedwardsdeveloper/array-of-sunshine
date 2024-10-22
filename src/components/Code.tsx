@@ -1,9 +1,11 @@
 'use client';
 import { useState } from 'react';
 import clsx from 'clsx';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import {
+	Prism as SyntaxHighlighter,
+	type SyntaxHighlighterProps,
+} from 'react-syntax-highlighter';
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import type { SyntaxHighlighterProps } from 'react-syntax-highlighter';
 
 interface CodeBlockProps extends Omit<SyntaxHighlighterProps, 'language'> {
 	language:
@@ -84,7 +86,7 @@ export const CodeBlock = ({
 	};
 
 	return (
-		<div className={clsx('rounded-lg', 'border  border-gray-200', 'my-4')}>
+		<div className={clsx('rounded-lg', 'border  border-gray-200', 'my-8')}>
 			<div
 				className={clsx(
 					'flex justify-between items-center',
