@@ -1,58 +1,55 @@
-import { Metadata } from 'next';
+import { Metadata } from 'next'
 
-import { article } from './data';
-import { generateArticleMetadata } from '@/library/articleMetadata';
-import { ArticleLayout } from '@/components/ArticleLayout';
-import { CodeBlock, InlineCode } from '@/components/Code';
-import Paragraph from '@/components/Paragraph';
-import { Heading2, Heading3 } from '@/components/Headings';
-import { UnorderedList, ListItem } from '@/components/Lists';
-import StyledLink from '@/components/StyledLink';
+import { generateArticleMetadata } from '@/library/articleMetadata'
+
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { CodeBlock, InlineCode } from '@/components/Code'
+import { Heading2, Heading3 } from '@/components/Headings'
+import { ListItem, UnorderedList } from '@/components/Lists'
+import Paragraph from '@/components/Paragraph'
+import StyledLink from '@/components/StyledLink'
+
+import { article } from './data'
 
 export const generateMetadata = (): Metadata => {
-	return generateArticleMetadata({
-		...article,
-		slug: 'adding-a-simple-analytics-badge-to-a-next-js-site',
-	});
-};
+  return generateArticleMetadata({
+    ...article,
+    slug: 'adding-a-simple-analytics-badge-to-a-next-js-site',
+  })
+}
 
 export default function Page() {
-	return (
-		<ArticleLayout article={article}>
-			<Paragraph>
-				<StyledLink
-					href="https://www.simpleanalytics.com/"
-					ariaLabel="Simple Analytics, alternative to Google Analytics"
-				>
-					Simple Analytics
-				</StyledLink>{' '}
-				is an excellent alternative to Google Analytics. It doesn't collect
+  return (
+    <ArticleLayout article={article}>
+      <Paragraph>
+        <StyledLink
+          href="https://www.simpleanalytics.com/"
+          ariaLabel="Simple Analytics, alternative to Google Analytics"
+        >
+          Simple Analytics
+        </StyledLink>
+        {` is an excellent alternative to Google Analytics. It doesn't collect
 				creepy personalised data on your site visitors and doesn't require a
 				cookie consent form. It's beautiful if you care about making a site
-				that's useful and enjoyable to use.
-			</Paragraph>
+				that's useful and enjoyable to use.`}
+      </Paragraph>
 
-			<Paragraph>
-				You might think this would mean the data lacks detail and utility,
-				but this isn't true. You can see individual page views and the
-				visitor's country and browser - perfect for a blog. It's also free
-				for multiple sites, as long as you display the Simple Analytics
-				badge on your site, which is a link to your dashboard.
-			</Paragraph>
+      <Paragraph>
+        {`You might think this would mean the data lacks detail and utility, but this isn't true. You can see
+        individual page views and the visitor's country and browser - perfect for a blog. It's also free for
+        multiple sites, as long as you display the Simple Analytics badge on your site, which is a link to
+        your dashboard.`}
+      </Paragraph>
 
-			<Heading2>Allow external images</Heading2>
+      <Heading2>Allow external images</Heading2>
 
-			<Paragraph>
-				To display images from an external Content Delivery Network (CDN) in
-				our Next.js site, we must configure the image domains in our Next.js
-				configuration. Add a remotePattern to your{' '}
-				<InlineCode>next.config.mjs</InlineCode>:
-			</Paragraph>
+      <Paragraph>
+        To display images from an external Content Delivery Network (CDN) in our Next.js site, we must
+        configure the image domains in our Next.js configuration. Add a remotePattern to your{' '}
+        <InlineCode>next.config.mjs</InlineCode>:
+      </Paragraph>
 
-			<CodeBlock
-				fileName="next.config.mjs"
-				language="mjs"
-			>{`/** @type {import('next').NextConfig} */
+      <CodeBlock fileName="next.config.mjs" language="mjs">{`/** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
 		remotePatterns: [
@@ -69,53 +66,45 @@ const nextConfig = {
 export default nextConfig;
 `}</CodeBlock>
 
-			<Heading2>Create components</Heading2>
+      <Heading2>Create components</Heading2>
 
-			<Paragraph>
-				Next, we need to create <InlineCode>Script</InlineCode> and{' '}
-				<InlineCode>Badge</InlineCode> components. I've included this code
-				for clarity, but I wouldn't recommend doing it this way. I only
-				create separate components in a React/Next site if I plan to reuse
-				them - otherwise, it's just clutter.
-			</Paragraph>
+      <Paragraph>
+        Next, we need to create <InlineCode>Script</InlineCode> and <InlineCode>Badge</InlineCode>
+        {` components.
+        I've included this code for clarity, but I wouldn't recommend doing it this way. I only create
+        separate components in a React/Next site if I plan to reuse them - otherwise, it's just clutter.`}
+      </Paragraph>
 
-			<Heading3>SimpleAnalyticsBadge component</Heading3>
+      <Heading3>SimpleAnalyticsBadge component</Heading3>
 
-			<Paragraph>
-				I've updated the badge to use the Next.js Link and Image components.
-				You don't need to get any code from the Simple Analytics platform -
-				just fill out the bareDomain variable with the name of your site. I
-				have added
-			</Paragraph>
+      <Paragraph>
+        {`I've updated the badge to use the Next.js Link and Image components. You don't need to get any code
+        from the Simple Analytics platform - just fill out the bareDomain variable with the name of your site.
+        I have added`}
+      </Paragraph>
 
-			<UnorderedList>
-				<ListItem>
-					<InlineCode>alt</InlineCode> for accessibility
-				</ListItem>
-				<ListItem>
-					<InlineCode>loading="lazy"</InlineCode> as you'll probably have
-					this below the fold in the footer
-				</ListItem>
-				<ListItem>
-					<InlineCode>height</InlineCode> and{' '}
-					<InlineCode>width</InlineCode> to avoid layout shift
-				</ListItem>
-				<ListItem>
-					<strong>
-						<InlineCode>unoptimised</InlineCode>
-					</strong>{' '}
-					Without this, Next.js will look for the image at{' '}
-					<InlineCode>
-						https://my-site.com/https://https://simpleanalyticsbadges.com/my-site.com
-					</InlineCode>
-					.
-				</ListItem>
-			</UnorderedList>
+      <UnorderedList>
+        <ListItem>
+          <InlineCode>alt</InlineCode> for accessibility
+        </ListItem>
+        <ListItem>
+          <InlineCode>{`loading="lazy"`}</InlineCode>
+          {` as you'll probably have this below the fold in the
+          footer`}
+        </ListItem>
+        <ListItem>
+          <InlineCode>height</InlineCode> and <InlineCode>width</InlineCode> to avoid layout shift
+        </ListItem>
+        <ListItem>
+          <strong>
+            <InlineCode>unoptimised</InlineCode>
+          </strong>{' '}
+          Without this, Next.js will look for the image at{' '}
+          <InlineCode>https://my-site.com/https://https://simpleanalyticsbadges.com/my-site.com</InlineCode>.
+        </ListItem>
+      </UnorderedList>
 
-			<CodeBlock
-				fileName="SimpleAnalyticsBadge.tsx"
-				language="tsx"
-			>{`import Image from 'next/image';
+      <CodeBlock fileName="SimpleAnalyticsBadge.tsx" language="tsx">{`import Image from 'next/image';
 import Link from 'next/link';
 
 const bareDomain = 'my-site.com';
@@ -147,17 +136,11 @@ export default function SimpleAnalyticsBadge() {
 	);
 }`}</CodeBlock>
 
-			<Heading3>SimpleAnalyticsScript component</Heading3>
+      <Heading3>SimpleAnalyticsScript component</Heading3>
 
-			<Paragraph>
-				Now for the script. This code is straightforward and the same code
-				for everyone.
-			</Paragraph>
+      <Paragraph>Now for the script. This code is straightforward and the same code for everyone.</Paragraph>
 
-			<CodeBlock
-				fileName="SimpleAnalyticsScript.tsx"
-				language="tsx"
-			>{`import Script from 'next/script';
+      <CodeBlock fileName="SimpleAnalyticsScript.tsx" language="tsx">{`import Script from 'next/script';
 
 export default function SimpleAnalyticsScript() {
 	return (
@@ -180,14 +163,14 @@ export default function SimpleAnalyticsScript() {
 	);
 }`}</CodeBlock>
 
-			<Heading3>Calling the components</Heading3>
+      <Heading3>Calling the components</Heading3>
 
-			<Paragraph>Add the badge to our footer (or wherever).</Paragraph>
+      <Paragraph>Add the badge to our footer (or wherever).</Paragraph>
 
-			<CodeBlock
-				fileName="Footer.tsx"
-				language="tsx"
-			>{`import SimpleAnalyticsBadge from '@/components/SimpleAnalyticsBadge';
+      <CodeBlock
+        fileName="Footer.tsx"
+        language="tsx"
+      >{`import SimpleAnalyticsBadge from '@/components/SimpleAnalyticsBadge';
 
 export default function Footer() {
 	return (
@@ -199,16 +182,15 @@ export default function Footer() {
 }
 `}</CodeBlock>
 
-			<Paragraph>
-				Add the script to the entry point of our site. If you're using the
-				latest version of Next with the app router, it will be
-				app/layout.tsx, but for older versions, it could be pages/_app.tsx.
-			</Paragraph>
+      <Paragraph>
+        {`Add the script to the entry point of our site. If you're using the latest version of Next with the app
+        router, it will be app/layout.tsx, but for older versions, it could be pages/_app.tsx.`}
+      </Paragraph>
 
-			<CodeBlock
-				fileName="app/layout.tsx"
-				language="tsx"
-			>{`import SimpleAnalyticsScript from '@/components/SimpleAnalyticsScript';
+      <CodeBlock
+        fileName="app/layout.tsx"
+        language="tsx"
+      >{`import SimpleAnalyticsScript from '@/components/SimpleAnalyticsScript';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -219,24 +201,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }`}</CodeBlock>
 
-			<Heading2>Integrated version (recommended)</Heading2>
+      <Heading2>Integrated version (recommended)</Heading2>
 
-			<Paragraph>
-				As I said before, I recommend creating separate components only if
-				you plan to reuse them, so here's how I set up my project.
-			</Paragraph>
+      <Paragraph>
+        {`As I said before, I recommend creating separate components only if you plan to reuse them, so here's
+        how I set up my project.`}
+      </Paragraph>
 
-			<Heading2>Footer.tsx</Heading2>
+      <Heading2>Footer.tsx</Heading2>
 
-			<Paragraph>
-				Create and call the <InlineCode>SimpleAnalyticsBadge</InlineCode>{' '}
-				component as a subcomponent.
-			</Paragraph>
+      <Paragraph>
+        Create and call the <InlineCode>SimpleAnalyticsBadge</InlineCode> component as a subcomponent.
+      </Paragraph>
 
-			<CodeBlock
-				fileName="Footer.tsx"
-				language="tsx"
-			>{`import Image from 'next/image';
+      <CodeBlock fileName="Footer.tsx" language="tsx">{`import Image from 'next/image';
 import Link from 'next/link';
 
 const footerLinks: FooterLink[] = [
@@ -295,29 +273,24 @@ export default function Footer() {
 }
 `}</CodeBlock>
 
-			<Paragraph>
-				Create the <InlineCode>SimpleAnalyticsScript</InlineCode> component
-				as a subcomponent and call it conditionally.
-			</Paragraph>
+      <Paragraph>
+        Create the <InlineCode>SimpleAnalyticsScript</InlineCode> component as a subcomponent and call it
+        conditionally.
+      </Paragraph>
 
-			<Paragraph>
-				You should disable the script from loading during development, as
-				you'll get all sorts of console errors if the script is loaded from
-				the wrong address. It will also mess up your page view stats.
-			</Paragraph>
+      <Paragraph>
+        {`You should disable the script from loading during development, as you'll get all sorts of console
+        errors if the script is loaded from the wrong address. It will also mess up your page view stats.`}
+      </Paragraph>
 
-			<Paragraph>
-				I'm using a custom environment module (based on the envalid package)
-				here because I don't play around when it comes to environment
-				variables, and I'm not letting anyone else handle them for me. You
-				can use <InlineCode>process.env.NODE_ENV</InlineCode> instead,
-				though, which should work fine.
-			</Paragraph>
+      <Paragraph>
+        {`I'm using a custom environment module (based on the envalid package) here because I don't play around
+        when it comes to environment variables, and I'm not letting anyone else handle them for me. You can
+        use `}
+        <InlineCode>process.env.NODE_ENV</InlineCode> instead, though, which should work fine.
+      </Paragraph>
 
-			<CodeBlock
-				fileName="app/layout.tsx"
-				language="tsx"
-			>{`import type { Metadata, Viewport } from 'next';
+      <CodeBlock fileName="app/layout.tsx" language="tsx">{`import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './global.tailwind.css';
 
@@ -371,7 +344,7 @@ export default function RootLayout({
 }
 `}</CodeBlock>
 
-			<Paragraph>And that's all there is to it. Happy analyzing!</Paragraph>
-		</ArticleLayout>
-	);
+      <Paragraph>{`And that's all there is to it. Happy analyzing!`}</Paragraph>
+    </ArticleLayout>
+  )
 }

@@ -1,5 +1,5 @@
-import Checkbox from './Checkbox';
+import Checkbox from './Checkbox'
 
 export default function Page() {
-	return <Checkbox colour="green">Tick me</Checkbox>;
+  return <Checkbox colour="green">Tick me</Checkbox>
 }

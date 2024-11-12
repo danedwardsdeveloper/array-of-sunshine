@@ -13,11 +13,11 @@ This is a fantastic book, but it's not for beginners. Haverbeke clearly knows a 
 
 _Eloquent JavaScript_ is a thorough exploration of the JavaScript language, covering everything from basic syntax to advanced concepts. Haverbeke explores topics such as:
 
--  Functions and closures
--  Object-oriented programming
--  Asynchronous programming
--  Regular expressions
--  Modules and their usage
+- Functions and closures
+- Object-oriented programming
+- Asynchronous programming
+- Regular expressions
+- Modules and their usage
 
 ### Practical Examples
 
@@ -43,14 +43,14 @@ The 4th edition of "Eloquent JavaScript" has been updated to reflect the latest 
 
 ### Pros
 
--  **Comprehensive Coverage:** In-depth exploration of JavaScript from fundamentals to advanced topics.
--  **Practical Exercises:** Numerous examples and exercises that reinforce learning.
--  **Updated Content:** The 4th edition includes the latest updates in JavaScript.
+- **Comprehensive Coverage:** In-depth exploration of JavaScript from fundamentals to advanced topics.
+- **Practical Exercises:** Numerous examples and exercises that reinforce learning.
+- **Updated Content:** The 4th edition includes the latest updates in JavaScript.
 
 ### Cons
 
--  **Not for Beginners:** Requires prior programming knowledge.
--  **Dense Material:** The book can be overwhelming without supplementary resources.
+- **Not for Beginners:** Requires prior programming knowledge.
+- **Dense Material:** The book can be overwhelming without supplementary resources.
 
 ## Conclusion
 

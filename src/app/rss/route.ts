@@ -1,28 +1,28 @@
-import { getAllArticles } from '@/library/articles';
-import { environment } from '@/library/environment';
+import { getAllArticles } from '@/library/articles'
+import { environment } from '@/library/environment'
 
 export async function GET() {
-	let allArticles = await getAllArticles();
+  const allArticles = await getAllArticles()
 
-	const itemsXml = allArticles
-		.sort((a, b) => {
-			if (new Date(a.date) > new Date(b.date)) {
-				return -1;
-			}
-			return 1;
-		})
-		.map(
-			(post) =>
-				`<item>
+  const itemsXml = allArticles
+    .sort((a, b) => {
+      if (new Date(a.date) > new Date(b.date)) {
+        return -1
+      }
+      return 1
+    })
+    .map(
+      post =>
+        `<item>
           <title>${post.title}</title>
           <link>${environment.productionBaseURL}/articles/${post.slug}</link>
           <description>${post.description || ''}</description>
           <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-        </item>`
-		)
-		.join('\n');
+        </item>`,
+    )
+    .join('\n')
 
-	const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
+  const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
   <rss version="2.0">
     <channel>
         <title>Array of Sunshine</title>
@@ -30,11 +30,11 @@ export async function GET() {
         <description>Array of Sunshine web dev blog RSS feed</description>
         ${itemsXml}
     </channel>
-  </rss>`;
+  </rss>`
 
-	return new Response(rssFeed, {
-		headers: {
-			'Content-Type': 'text/xml',
-		},
-	});
+  return new Response(rssFeed, {
+    headers: {
+      'Content-Type': 'text/xml',
+    },
+  })
 }
