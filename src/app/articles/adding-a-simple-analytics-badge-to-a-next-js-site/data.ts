@@ -1,13 +1,17 @@
-import { type IArticle } from '@/library/articles'
+import { Article, writers } from '@/types'
+import { tags } from '@/types/definitions/tags'
 
-import simpleAnalyticsImage from '../../../../public/images/social-png/simple-analytics-badge-next-js.png'
+import socialImage from '../../../../public/images/simple-analytics-badge-next-js.png'
+import featuredImage from './images/simple-analytics-badge-next-js.png'
 
-export const article: IArticle = {
-  writer: `Dan Edwards`,
+export const article: Article = {
+  writer: writers.danEdwards,
   date: `2024-09-16`,
   title: `Adding a Simple Analytics badge to a Next.js site`,
-  description: `Learn how to add a Simple Analytics badge to your Next.js site, an excellent alternative to Google Analytics that respects user privacy and doesn't require cookie consent forms.`,
+  metaDescription: `Learn how to add a Simple Analytics badge to your Next.js site, an excellent alternative to Google Analytics that respects user privacy and doesn't require cookie consent forms.`,
   keywords: `Simple Analytics, Next.js, privacy-friendly analytics, web development`,
-  tags: ['Next', 'Analytics'],
-  featuredImage: simpleAnalyticsImage,
+  tags: [tags.nextJs, tags.analytics],
+  slug: 'adding-a-simple-analytics-badge-to-a-next-js-site',
+  featuredImage,
+  socialImage,
 }
