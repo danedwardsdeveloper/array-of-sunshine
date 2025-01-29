@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import Link from 'next/link'
 
-import { getAllArticles } from '@/library/articles'
 import formatDate from '@/library/formatDate'
+import { getAllArticles } from '@/library/getAllArticles'
 
 export default async function ArticlesList() {
   const articles = await getAllArticles()
@@ -22,7 +22,7 @@ export default async function ArticlesList() {
             'hover:bg-orange-50 active:bg-orange-50 rounded-md transition-all duration-300',
           )}
         >
-          <div className={clsx('w-full flex flex-col md:flex-row space-x-0 md:space-x-2')}>
+          <div className={clsx('flex flex-col md:flex-row space-x-0 md:space-x-2')}>
             <p
               className={clsx(
                 'text-neutral-600 dark:text-neutral-400 tabular-nums',
@@ -31,7 +31,7 @@ export default async function ArticlesList() {
             >
               {formatDate(article.date)}
             </p>
-            <p className={clsx('text-neutral-900 dark:text-neutral-100 tracking-tight text-balance')}>
+            <p className={clsx('text-neutral-900 dark:text-neutral-100 leading-normal text-balance')}>
               {article.title}
             </p>
           </div>
