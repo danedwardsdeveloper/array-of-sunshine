@@ -1,12 +1,13 @@
-import { environment } from '@/library/environment'
+import { productionBaseURL } from '@/library/environment'
 
 export default function robots() {
   return {
     rules: [
       {
         userAgent: '*',
+        allow: '/',
       },
     ],
-    sitemap: `${environment.productionBaseURL}/sitemap.xml`,
+    sitemap: `${productionBaseURL}/sitemap.xml`,
   }
 }
