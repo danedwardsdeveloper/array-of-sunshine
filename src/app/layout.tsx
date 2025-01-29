@@ -2,8 +2,7 @@ import clsx from 'clsx'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import type { Metadata, Viewport } from 'next'
-import Image from 'next/image'
-import Script from 'next/script'
+import dynamic from 'next/dynamic'
 
 import {
   defaultMetaDescription,
@@ -11,25 +10,28 @@ import {
   defaultSocialImage,
   siteName,
 } from '@/library/articleMetadata'
-import { environment } from '@/library/environment'
+import { isProduction, productionBaseURL } from '@/library/environment'
 
-import Footer from '@/components/Footer'
 import Menu from '@/components/Menu'
+import { SimpleAnalyticsScript } from '@/components/SimpleAnalytics'
 
 import '../library/globals.tailwind.css'
-import { Providers } from '@/app/providers'
+
+const Footer = dynamic(() => import('@/components/Footer'), {
+  loading: () => <div className="w-full h-[483px] bg-gray-100 dark:bg-gray-800 mt-8 animate-pulse" />,
+})
 
 export const metadata: Metadata = {
   title: defaultMetaTitle,
   description: defaultMetaDescription,
   keywords: ['web development', 'full-stack', 'typescript', 'next.js', 'node.js', 'react', 'mern'],
-  authors: [{ name: 'Dan Edwards', url: environment.productionBaseURL }],
+  authors: [{ name: 'Dan Edwards', url: productionBaseURL }],
   creator: 'Dan Edwards',
   publisher: siteName,
   openGraph: {
     title: defaultMetaTitle,
     description: defaultMetaDescription,
-    url: environment.productionBaseURL,
+    url: productionBaseURL,
     siteName: siteName,
     locale: 'en_GB',
     type: 'website',
@@ -58,36 +60,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: environment.productionBaseURL,
+    canonical: productionBaseURL,
   },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-}
-
-function SimpleAnalyticsScript() {
-  return (
-    <>
-      <Script
-        async
-        defer
-        src="https://scripts.simpleanalyticscdn.com/latest.js"
-        strategy="afterInteractive"
-      ></Script>
-      <noscript>
-        <Image
-          src="https://queue.simpleanalyticscdn.com/noscript.gif"
-          height={48}
-          width={201}
-          alt="Simple Analytics no script gif"
-          referrerPolicy="no-referrer-when-downgrade"
-          loading="lazy"
-        />
-      </noscript>
-    </>
-  )
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -102,15 +81,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       )}
       suppressHydrationWarning
     >
-      <body className={clsx('antialiased', 'md:max-w-xl', 'mx-4 md:mx-auto', 'mt-8')}>
-        <Providers>
-          <main className={clsx('flex min-w-0 flex-auto flex-col')}>
-            <Menu />
-            {children}
-            <Footer />
-          </main>
-        </Providers>
-        {environment.isProduction && <SimpleAnalyticsScript />}
+      <body className="antialiased leading-7 flex flex-col md:max-w-xl md:mx-auto mt-4 md:mt-8 mx-4">
+        <Menu />
+        <main>{children}</main>
+        <Footer />
+        {isProduction && <SimpleAnalyticsScript />}
       </body>
     </html>
   )
