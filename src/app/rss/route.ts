@@ -1,6 +1,16 @@
-import { getAllArticles } from '@/library/articles'
-import { environment } from '@/library/environment'
+import { productionBaseURL } from '@/library/environment'
+import { getAllArticles } from '@/library/getAllArticles'
 
+function escapeXml(unsafe: string): string {
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+// ToDo: This isn't working!
 export async function GET() {
   const allArticles = await getAllArticles()
 
@@ -14,27 +24,27 @@ export async function GET() {
     .map(
       post =>
         `<item>
-          <title>${post.title}</title>
-          <link>${environment.productionBaseURL}/articles/${post.slug}</link>
-          <description>${post.description || ''}</description>
+          <title>${escapeXml(post.title)}</title>
+          <link>${escapeXml(`${productionBaseURL}/articles/${post.slug}`)}</link>
+          <description>${escapeXml(post.metaDescription || '')}</description>
           <pubDate>${new Date(post.date).toUTCString()}</pubDate>
         </item>`,
     )
     .join('\n')
 
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
-  <rss version="2.0">
+  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Array of Sunshine</title>
-        <link>${environment.productionBaseURL}</link>
-        <description>Array of Sunshine web dev blog RSS feed</description>
+        <title>${escapeXml('Array of Sunshine')}</title>
+        <link>${escapeXml(productionBaseURL)}</link>
+        <description>${escapeXml('Array of Sunshine web dev blog RSS feed')}</description>
         ${itemsXml}
     </channel>
   </rss>`
 
   return new Response(rssFeed, {
     headers: {
-      'Content-Type': 'text/xml',
+      'Content-Type': 'application/xml;charset=utf-8',
     },
   })
 }
