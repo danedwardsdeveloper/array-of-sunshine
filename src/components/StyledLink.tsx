@@ -12,10 +12,11 @@ interface StyledLinkProps {
 const baseStyles = [
   'relative group inline-block',
   'underline underline-offset-2',
-  'transition-colors duration-200',
-  'focus:outline-none focus:ring-2',
+  'transition-all duration-300',
+  'focus:outline-none focus:ring-2 rounded-lg',
   'focus:ring-blue-500 focus:ring-offset-2',
   'text-gray-600 hover:text-gray-500',
+  'decoration-transparent hover:decoration-gray-500',
 ]
 
 export default function StyledLink({ href, ariaLabel, className, children }: StyledLinkProps) {
