@@ -28,30 +28,30 @@ input[type='email'] {
   appearance: none;
 }
 
-.article-content h2 {
+article h2 {
   @apply mb-2 mt-6 text-xl font-medium tracking-tight;
 }
 
-.article-content h3 {
+article h3 {
   @apply mb-2 mt-6 text-lg font-medium tracking-tight;
 }
 
-.article-content p {
-  @apply my-8 text-neutral-800 dark:text-neutral-200;
+article p {
+  @apply mt-2 mb-8 text-neutral-800 dark:text-neutral-200;
 }
 
-.article-content > code {
+article code:not([data-component='CodeBlock'] code) {
   @apply text-sm border  border-gray-200 bg-gray-100 text-black rounded px-2 py-0.5 font-mono break-words;
 }
 
-.article-content ul {
+article ul {
   @apply list-disc pl-6 my-6;
 }
 
-.article-content ol {
+article ol {
   @apply list-decimal pl-6 my-6;
 }
 
-.article-content li {
+article li {
   @apply mb-4;
 }
