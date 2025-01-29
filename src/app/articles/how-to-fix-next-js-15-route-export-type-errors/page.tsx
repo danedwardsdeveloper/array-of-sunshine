@@ -1,18 +1,11 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { CodeBlock, InlineCode } from '@/components/Code'
+import { ArticleLayout } from '../_components/ArticleLayout'
+import { CodeBlock } from '@/app/articles/_components/Code'
 
 import { article } from './data'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata({
-    ...article,
-    slug: 'how-to-fix-next-js-15-route-export-type-errors',
-  })
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (
@@ -83,7 +76,7 @@ export async function GET(
         <li>
           <strong>{`Promise Type: `}</strong>
           {`The `}
-          <InlineCode>params</InlineCode>
+          <code>params</code>
           {` object is now typed as a Promise:
 		`}
           <CodeBlock
@@ -95,7 +88,7 @@ export async function GET(
         <li>
           <strong>{`Await Parameters: `}</strong>
           {`You must await the `}
-          <InlineCode>{`params`}</InlineCode>
+          <code>{`params`}</code>
           {` before accessing any parameter properties:`}
           <CodeBlock
             language="typescript"

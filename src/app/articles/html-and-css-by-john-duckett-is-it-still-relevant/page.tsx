@@ -1,18 +1,11 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
+import { ArticleLayout } from '../_components/ArticleLayout'
 import StyledLink from '@/components/StyledLink'
 
 import { article } from './data'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata({
-    ...article,
-    slug: 'html-and-css-by-john-duckett-is-it-still-relevant',
-  })
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (

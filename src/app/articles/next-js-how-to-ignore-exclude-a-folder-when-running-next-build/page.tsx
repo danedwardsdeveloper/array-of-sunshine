@@ -1,25 +1,20 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { CodeBlock, InlineCode } from '@/components/Code'
-import Paragraph from '@/components/Paragraph'
+import { ArticleLayout } from '../_components/ArticleLayout'
+import { CodeBlock } from '@/app/articles/_components/Code'
 
 import { article } from './data'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata(article)
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (
     <ArticleLayout article={article} borderOnFeaturedImage>
-      <Paragraph>
+      <p>
         {`Want to ignore certain folders/directories when running "next
 				build"? Here's the solution - just add the folder to the exclude
 				array in your tsconfig.json (or jsconfig.json):`}
-      </Paragraph>
+      </p>
 
       <CodeBlock language={'json'} fileName={'tsconfig.json'}>{`
 			{ 
@@ -27,17 +22,17 @@ export default function Page() {
 	"exclude": ["node_modules", "misc", "work-in-progress"]
 }
 	`}</CodeBlock>
-      <Paragraph>
+      <p>
         {`Here, the `}
-        <InlineCode>node_modules</InlineCode>
+        <code>node_modules</code>
         {` folder is ignored as
 				usual, and my `}
-        <InlineCode>misc</InlineCode>
+        <code>misc</code>
         {` and `}
-        <InlineCode>work-in-progress</InlineCode>
+        <code>work-in-progress</code>
         {` folders (in the root directory) will be ignored too. `}
-      </Paragraph>
-      <Paragraph>{`That's it! Next.js will now ignore these folders during the build process.`}</Paragraph>
+      </p>
+      <p>{`That's it! Next.js will now ignore these folders during the build process.`}</p>
     </ArticleLayout>
   )
 }

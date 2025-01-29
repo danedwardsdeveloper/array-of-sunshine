@@ -1,20 +1,11 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { InlineCode } from '@/components/Code'
-import { ListItem, OrderedList, UnorderedList } from '@/components/Lists'
+import { ArticleLayout } from '../_components/ArticleLayout'
 import StyledLink from '@/components/StyledLink'
 
 import { article } from './data'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata({
-    ...article,
-    slug: 'resolving-mdx-vs-code-sidebar-keyboard-shortcut-conflict',
-  })
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (
@@ -28,7 +19,7 @@ export default function Page() {
           MDX extension
         </StyledLink>
         {` in Visual Studio Code, you might have noticed that it overrides the default 'Hide Sidebar' shortcut (`}
-        <InlineCode>Command B</InlineCode> on a Mac or <InlineCode>Control B</InlineCode>
+        <code>Command B</code> on a Mac or <code>Control B</code>
         {` on Windows/Linux).
         This can be frustrating if you frequently use this shortcut to toggle the sidebar. Here's a quick
         guide on how to resolve this conflict.`}
@@ -36,49 +27,49 @@ export default function Page() {
 
       <h2>Steps to Fix the Shortcut Conflict</h2>
 
-      <OrderedList>
-        <ListItem>
+      <ol>
+        <li>
           Open the Command Palette:
-          <UnorderedList>
-            <ListItem>
-              On a Mac: <InlineCode>Shift Command P</InlineCode>
-            </ListItem>
-            <ListItem>
-              On Windows/Linux: <InlineCode>Shift Control P</InlineCode>
-            </ListItem>
-          </UnorderedList>
-        </ListItem>
-        <ListItem>
+          <ul>
+            <li>
+              On a Mac: <code>Shift Command P</code>
+            </li>
+            <li>
+              On Windows/Linux: <code>Shift Control P</code>
+            </li>
+          </ul>
+        </li>
+        <li>
           {`Search for `}
           <strong>Preferences: Open Keyboard Shortcuts</strong>
           {`' in the Command Palette.`}
-        </ListItem>
-        <ListItem>
-          In the search bar of the Keyboard Shortcuts page, type <InlineCode>Command B</InlineCode> (or{' '}
-          <InlineCode>Control B</InlineCode> for Windows/Linux).
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
+          In the search bar of the Keyboard Shortcuts page, type <code>Command B</code> (or{' '}
+          <code>Control B</code> for Windows/Linux).
+        </li>
+        <li>
           {`Find the MDX `}
           <strong>Toggle Bold</strong>
           {` shortcut in the list.`}
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           To remove the conflicting shortcut:
-          <UnorderedList>
-            <ListItem>Right-click on the MDX Toggle Bold shortcut</ListItem>
-            <ListItem>
+          <ul>
+            <li>Right-click on the MDX Toggle Bold shortcut</li>
+            <li>
               {`Select `}
               <strong>Remove Keybinding</strong>
-            </ListItem>
-          </UnorderedList>
+            </li>
+          </ul>
           Alternatively, to reassign the shortcut:
-          <UnorderedList>
-            <ListItem>Right-click on the pencil icon next to the shortcut</ListItem>
-            <ListItem>Assign a different key combination</ListItem>
-          </UnorderedList>
-        </ListItem>
-        <ListItem>You may need to restart VS Code for the changes to take effect.</ListItem>
-      </OrderedList>
+          <ul>
+            <li>Right-click on the pencil icon next to the shortcut</li>
+            <li>Assign a different key combination</li>
+          </ul>
+        </li>
+        <li>You may need to restart VS Code for the changes to take effect.</li>
+      </ol>
 
       <p>
         {`Following these steps, you can use the default 'Hide Sidebar' shortcut without conflicts from the MDX
@@ -109,8 +100,8 @@ export default function Page() {
       </p>
 
       <p>
-        Sticking to <InlineCode>.TSX</InlineCode> is a more practical and efficient choice for most projects,
-        especially those prioritizing type safety and clear separation of concerns.
+        Sticking to <code>.TSX</code> is a more practical and efficient choice for most projects, especially
+        those prioritizing type safety and clear separation of concerns.
       </p>
     </ArticleLayout>
   )

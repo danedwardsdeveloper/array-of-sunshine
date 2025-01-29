@@ -1,21 +1,13 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { CodeBlock, InlineCode } from '@/components/Code'
-import { Heading2, Heading3 } from '@/components/Headings'
+import { ArticleLayout } from '../_components/ArticleLayout'
+import { CodeBlock } from '@/app/articles/_components/Code'
 import StyledLink from '@/components/StyledLink'
 
 import Checkbox from './Checkbox'
 import { article } from './data'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata({
-    ...article,
-    slug: 'styling-checkboxes-in-react-and-next-with-tailwind',
-  })
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (
@@ -46,7 +38,7 @@ export default function Page() {
 
       <p>{`I'll assume you've already got Tailwind up and running in your React/ Next.js project.`}</p>
 
-      <Heading2>1. Install the Forms plugin.</Heading2>
+      <h2>1. Install the Forms plugin.</h2>
 
       <p>
         {`...if you haven't already. This is required because Tailwind doesn't simply apply CSS classes to the
@@ -59,7 +51,7 @@ export default function Page() {
 # Or
 npm i @tailwindcss/forms`}
       </CodeBlock>
-      <Heading2>2. Import the Forms plugin.</Heading2>
+      <h2>2. Import the Forms plugin.</h2>
 
       <CodeBlock fileName="tailwind.config.ts" language="typescript">{`import forms from '@tailwindcss/forms';
 import { type Config } from 'tailwindcss';
@@ -70,7 +62,7 @@ export default {
 } satisfies Config;
 `}</CodeBlock>
 
-      <Heading2>3. Create a Checkbox component</Heading2>
+      <h2>3. Create a Checkbox component</h2>
 
       <p>
         {`This creates a functional checkbox in a nice default blue colour. I've used the `}
@@ -129,37 +121,36 @@ export default function Checkbox({
 }`}
       </CodeBlock>
 
-      <Heading2>4. Add some colours</Heading2>
+      <h2>4. Add some colours</h2>
 
       <p>
         Now we can add some colours to the checkboxes, though some of these are more confusing than you might
         think.
       </p>
 
-      <Heading3>Unchecked background colour</Heading3>
+      <h3>Unchecked background colour</h3>
       <p>
         {`This is simply the regular background property. I'm using `}
-        <InlineCode>bg-gray-100</InlineCode>
+        <code>bg-gray-100</code>
       </p>
       <p>
         {`Add a subtle hover style to indicate that it's interactive, such as `}
-        <InlineCode>bg-red-200</InlineCode>
+        <code>bg-red-200</code>
       </p>
-      <Heading3>Checked style</Heading3>
+      <h3>Checked style</h3>
       <p>
         To change the colour of the negative space around the check mark, use a text colour style, such as{' '}
-        <InlineCode>text-red-500</InlineCode>
+        <code>text-red-500</code>
       </p>
       <p>
         {`The tick shape is actually an SVG that Tailwind injects for you, so if you want to change the colour
         it's quite complicated. I haven't bothered as they look pretty cool with white.`}
       </p>
-      <Heading3>Focus ring</Heading3>
+      <h3>Focus ring</h3>
       <p>
-        Finally, change the colour of the focus ring with something like{' '}
-        <InlineCode>focus:ring-red-400</InlineCode>
+        Finally, change the colour of the focus ring with something like <code>focus:ring-red-400</code>
       </p>
-      <Heading2>5. Create colour options</Heading2>
+      <h2>5. Create colour options</h2>
       <p>{`Now let's create a colour map with these options to keep our code organised.`}</p>
       <CodeBlock language="typescript" fileName="Checkbox.tsx">{`const colourMap = {
 	red: 'text-red-500 focus:ring-red-400 hover:bg-red-200',
@@ -180,7 +171,7 @@ export default function Checkbox({
 	onChange?: (checked: boolean) => void;
 	children: ReactNode;
 }`}</CodeBlock>
-      <Heading2>6. The code in full</Heading2>
+      <h2>6. The code in full</h2>
       <p>{`That's it! Here's the component in full:`}</p>
       <CodeBlock language="typescript" fileName="Checkbox.tsx">{`'use client';
 import { ReactNode, useState, useEffect } from 'react';

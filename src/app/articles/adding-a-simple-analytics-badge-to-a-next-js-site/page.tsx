@@ -1,27 +1,17 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { CodeBlock, InlineCode } from '@/components/Code'
-import { Heading2, Heading3 } from '@/components/Headings'
-import { ListItem, UnorderedList } from '@/components/Lists'
-import Paragraph from '@/components/Paragraph'
+import { ArticleLayout } from '../_components/ArticleLayout'
+import { CodeBlock } from '@/app/articles/_components/Code'
 import StyledLink from '@/components/StyledLink'
 
 import { article } from './data'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata({
-    ...article,
-    slug: 'adding-a-simple-analytics-badge-to-a-next-js-site',
-  })
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (
     <ArticleLayout article={article}>
-      <Paragraph>
+      <p>
         <StyledLink
           href="https://www.simpleanalytics.com/"
           ariaLabel="Simple Analytics, alternative to Google Analytics"
@@ -32,22 +22,22 @@ export default function Page() {
 				creepy personalised data on your site visitors and doesn't require a
 				cookie consent form. It's beautiful if you care about making a site
 				that's useful and enjoyable to use.`}
-      </Paragraph>
+      </p>
 
-      <Paragraph>
+      <p>
         {`You might think this would mean the data lacks detail and utility, but this isn't true. You can see
         individual page views and the visitor's country and browser - perfect for a blog. It's also free for
         multiple sites, as long as you display the Simple Analytics badge on your site, which is a link to
         your dashboard.`}
-      </Paragraph>
+      </p>
 
-      <Heading2>Allow external images</Heading2>
+      <h2>Allow external images</h2>
 
-      <Paragraph>
+      <p>
         To display images from an external Content Delivery Network (CDN) in our Next.js site, we must
         configure the image domains in our Next.js configuration. Add a remotePattern to your{' '}
-        <InlineCode>next.config.mjs</InlineCode>:
-      </Paragraph>
+        <code>next.config.mjs</code>:
+      </p>
 
       <CodeBlock fileName="next.config.mjs" language="mjs">{`/** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -66,43 +56,43 @@ const nextConfig = {
 export default nextConfig;
 `}</CodeBlock>
 
-      <Heading2>Create components</Heading2>
+      <h2>Create components</h2>
 
-      <Paragraph>
-        Next, we need to create <InlineCode>Script</InlineCode> and <InlineCode>Badge</InlineCode>
+      <p>
+        Next, we need to create <code>Script</code> and <code>Badge</code>
         {` components.
         I've included this code for clarity, but I wouldn't recommend doing it this way. I only create
         separate components in a React/Next site if I plan to reuse them - otherwise, it's just clutter.`}
-      </Paragraph>
+      </p>
 
-      <Heading3>SimpleAnalyticsBadge component</Heading3>
+      <h3>SimpleAnalyticsBadge component</h3>
 
-      <Paragraph>
+      <p>
         {`I've updated the badge to use the Next.js Link and Image components. You don't need to get any code
         from the Simple Analytics platform - just fill out the bareDomain variable with the name of your site.
         I have added`}
-      </Paragraph>
+      </p>
 
-      <UnorderedList>
-        <ListItem>
-          <InlineCode>alt</InlineCode> for accessibility
-        </ListItem>
-        <ListItem>
-          <InlineCode>{`loading="lazy"`}</InlineCode>
+      <ul>
+        <li>
+          <code>alt</code> for accessibility
+        </li>
+        <li>
+          <code>{`loading="lazy"`}</code>
           {` as you'll probably have this below the fold in the
           footer`}
-        </ListItem>
-        <ListItem>
-          <InlineCode>height</InlineCode> and <InlineCode>width</InlineCode> to avoid layout shift
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
+          <code>height</code> and <code>width</code> to avoid layout shift
+        </li>
+        <li>
           <strong>
-            <InlineCode>unoptimised</InlineCode>
+            <code>unoptimised</code>
           </strong>{' '}
           Without this, Next.js will look for the image at{' '}
-          <InlineCode>https://my-site.com/https://https://simpleanalyticsbadges.com/my-site.com</InlineCode>.
-        </ListItem>
-      </UnorderedList>
+          <code>https://my-site.com/https://https://simpleanalyticsbadges.com/my-site.com</code>.
+        </li>
+      </ul>
 
       <CodeBlock fileName="SimpleAnalyticsBadge.tsx" language="tsx">{`import Image from 'next/image';
 import Link from 'next/link';
@@ -136,9 +126,9 @@ export default function SimpleAnalyticsBadge() {
 	);
 }`}</CodeBlock>
 
-      <Heading3>SimpleAnalyticsScript component</Heading3>
+      <h3>SimpleAnalyticsScript component</h3>
 
-      <Paragraph>Now for the script. This code is straightforward and the same code for everyone.</Paragraph>
+      <p>Now for the script. This code is straightforward and the same code for everyone.</p>
 
       <CodeBlock fileName="SimpleAnalyticsScript.tsx" language="tsx">{`import Script from 'next/script';
 
@@ -163,9 +153,9 @@ export default function SimpleAnalyticsScript() {
 	);
 }`}</CodeBlock>
 
-      <Heading3>Calling the components</Heading3>
+      <h3>Calling the components</h3>
 
-      <Paragraph>Add the badge to our footer (or wherever).</Paragraph>
+      <p>Add the badge to our footer (or wherever).</p>
 
       <CodeBlock
         fileName="Footer.tsx"
@@ -182,10 +172,10 @@ export default function Footer() {
 }
 `}</CodeBlock>
 
-      <Paragraph>
+      <p>
         {`Add the script to the entry point of our site. If you're using the latest version of Next with the app
         router, it will be app/layout.tsx, but for older versions, it could be pages/_app.tsx.`}
-      </Paragraph>
+      </p>
 
       <CodeBlock
         fileName="app/layout.tsx"
@@ -201,18 +191,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   );
 }`}</CodeBlock>
 
-      <Heading2>Integrated version (recommended)</Heading2>
+      <h2>Integrated version (recommended)</h2>
 
-      <Paragraph>
+      <p>
         {`As I said before, I recommend creating separate components only if you plan to reuse them, so here's
         how I set up my project.`}
-      </Paragraph>
+      </p>
 
-      <Heading2>Footer.tsx</Heading2>
+      <h2>Footer.tsx</h2>
 
-      <Paragraph>
-        Create and call the <InlineCode>SimpleAnalyticsBadge</InlineCode> component as a subcomponent.
-      </Paragraph>
+      <p>
+        Create and call the <code>SimpleAnalyticsBadge</code> component as a subcomponent.
+      </p>
 
       <CodeBlock fileName="Footer.tsx" language="tsx">{`import Image from 'next/image';
 import Link from 'next/link';
@@ -273,22 +263,21 @@ export default function Footer() {
 }
 `}</CodeBlock>
 
-      <Paragraph>
-        Create the <InlineCode>SimpleAnalyticsScript</InlineCode> component as a subcomponent and call it
-        conditionally.
-      </Paragraph>
+      <p>
+        Create the <code>SimpleAnalyticsScript</code> component as a subcomponent and call it conditionally.
+      </p>
 
-      <Paragraph>
+      <p>
         {`You should disable the script from loading during development, as you'll get all sorts of console
         errors if the script is loaded from the wrong address. It will also mess up your page view stats.`}
-      </Paragraph>
+      </p>
 
-      <Paragraph>
+      <p>
         {`I'm using a custom environment module (based on the envalid package) here because I don't play around
         when it comes to environment variables, and I'm not letting anyone else handle them for me. You can
         use `}
-        <InlineCode>process.env.NODE_ENV</InlineCode> instead, though, which should work fine.
-      </Paragraph>
+        <code>process.env.NODE_ENV</code> instead, though, which should work fine.
+      </p>
 
       <CodeBlock fileName="app/layout.tsx" language="tsx">{`import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
@@ -344,7 +333,7 @@ export default function RootLayout({
 }
 `}</CodeBlock>
 
-      <Paragraph>{`And that's all there is to it. Happy analyzing!`}</Paragraph>
+      <p>{`And that's all there is to it. Happy analyzing!`}</p>
     </ArticleLayout>
   )
 }

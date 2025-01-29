@@ -1,24 +1,17 @@
-import { Metadata } from 'next'
-
 import { generateArticleMetadata } from '@/library/articleMetadata'
 
-import { ArticleLayout } from '@/components/ArticleLayout'
-import { AdditionalImage } from '@/components/Images'
+import { ArticleLayout } from '../_components/ArticleLayout'
+import { AdditionalImage } from '@/app/articles/_components/Images'
 import StyledLink from '@/components/StyledLink'
 
 import { article } from './data'
 
-import hundredSeconds from '../../../../public/images/regular-webp/career-guide/100-seconds-of-next-js.webp'
-import effectiveDevPortfolio from '../../../../public/images/regular-webp/career-guide/building-an-effective-web-development-portfolio-book.webp'
-import rupaul from '../../../../public/images/regular-webp/career-guide/rupaul.webp'
-import wearASuit from '../../../../public/images/regular-webp/career-guide/wear-a-suit-to-a-coding-interview.webp'
+import hundredSeconds from './images/100-seconds-of-next-js.webp'
+import effectiveDevPortfolio from './images/building-an-effective-web-development-portfolio-book.webp'
+import rupaul from './images/rupaul.webp'
+import wearASuit from './images/wear-a-suit-to-a-coding-interview.webp'
 
-export const generateMetadata = (): Metadata => {
-  return generateArticleMetadata({
-    ...article,
-    slug: 'complete-software-developers-career-guide-book-review-and-summary',
-  })
-}
+export const metadata = generateArticleMetadata(article)
 
 export default function Page() {
   return (
