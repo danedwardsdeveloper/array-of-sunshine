@@ -1,6 +1,6 @@
 import { type Metadata } from 'next'
 
-import { environment } from '@/library/environment'
+import { productionBaseURL } from '@/library/environment'
 
 import ArticlesList from '@/components/ArticlesList'
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     'A coding blog covering full-stack web development, Node.js, TypeScript, React, Next.js, Express, MongoDB, and MERN stack applications.',
   alternates: {
-    canonical: `${environment.productionBaseURL}/articles`,
+    canonical: `${productionBaseURL}/articles`,
   },
 }
 
