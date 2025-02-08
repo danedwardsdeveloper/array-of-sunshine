@@ -16,6 +16,10 @@ const logger = {
     ? voidCallback
     : (...args: unknown[]): void => console.warn(chalk.yellow('[WARN]', ...args)),
   error: (...args: unknown[]): void => console.error(chalk.red('[ERROR]'), ...args),
+  errorUnknown: (error: unknown, label: string = 'Unknown error: '): void =>
+    console.error(
+      chalk.red('[ERROR]', label, error instanceof Error ? error.message : JSON.stringify(error)),
+    ),
 } as const
 
 export default logger
