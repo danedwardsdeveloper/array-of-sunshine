@@ -2,9 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
 	output: 'standalone',
-	devIndicators: {
-		appIsrStatus: false,
-	},
+	devIndicators: false,
 }
 
 export default nextConfig
