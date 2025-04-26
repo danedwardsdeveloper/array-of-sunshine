@@ -1,18 +1,16 @@
-import { productionBaseURL } from '@/library/environment'
-import { getAllArticles } from '@/library/getAllArticles'
+import allArticles from "@/library/data";
+import { productionBaseURL } from "@/library/environment";
 
 export default async function sitemap() {
-  const articles = await getAllArticles()
+	const articlePages = allArticles.map((article) => ({
+		url: `${productionBaseURL}/articles/${article.slug}`,
+		lastModified: article.updatedAt || article.publishedAt,
+	}));
 
-  const articlePages = articles.map(article => ({
-    url: `${productionBaseURL}/articles/${article.slug}`,
-    lastModified: article.date,
-  }))
+	const routes = ["", "/articles", "/rss"].map((route) => ({
+		url: `${productionBaseURL}${route}`,
+		lastModified: new Date().toISOString().split("T")[0],
+	}));
 
-  const routes = ['', '/articles'].map(route => ({
-    url: `${productionBaseURL}${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
-  }))
-
-  return [...routes, ...articlePages]
+	return [...routes, ...articlePages];
 }
