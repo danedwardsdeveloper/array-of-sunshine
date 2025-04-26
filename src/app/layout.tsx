@@ -1,93 +1,64 @@
-import clsx from "clsx";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
-import type { Metadata, Viewport } from "next";
-import dynamic from "next/dynamic";
+import Menu from '@/components/Menu'
+import { defaultMetaDescription, defaultMetaTitle, siteName } from '@/library/constants/definitions/metadata'
+import { dynamicBaseURL, productionBaseURL } from '@/library/environment'
+import clsx from 'clsx'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+import type { Metadata, Viewport } from 'next'
+import '@/library/globals.tailwind.css'
+import Footer from '@/components/Footer'
+import socialImage from '@public/images/array-of-sunshine-social.png'
+import Script from 'next/script'
+import type { ReactNode } from 'react'
 
-import {
-	defaultMetaDescription,
-	defaultMetaTitle,
-	defaultSocialImage,
-	siteName,
-} from "@/library/articleMetadata";
-import { productionBaseURL } from "@/library/environment";
-
-import Menu from "@/components/Menu";
-
-import "../library/globals.tailwind.css";
-import Script from "next/script";
-
-const Footer = dynamic(() => import("@/components/Footer"), {
-	loading: () => (
-		<div className="w-full h-[483px] bg-gray-100 dark:bg-gray-800 mt-8 animate-pulse" />
-	),
-});
+const socialImagePath = '/images/array-of-sunshine-social.png'
 
 export const metadata: Metadata = {
+	metadataBase: new URL(dynamicBaseURL),
 	title: defaultMetaTitle,
 	description: defaultMetaDescription,
-	keywords: [
-		"web development",
-		"full-stack",
-		"typescript",
-		"next.js",
-		"node.js",
-		"react",
-		"mern",
-	],
-	authors: [{ name: "Dan Edwards", url: productionBaseURL }],
-	creator: "Dan Edwards",
+	keywords: ['web development', 'full-stack', 'typescript', 'next.js', 'node.js', 'react'],
+	creator: 'Dan Edwards',
 	publisher: siteName,
 	openGraph: {
 		title: defaultMetaTitle,
 		description: defaultMetaDescription,
 		url: productionBaseURL,
 		siteName: siteName,
-		locale: "en_GB",
-		type: "website",
+		locale: 'en_GB',
+		type: 'website',
 		images: [
 			{
-				url: defaultSocialImage.absoluteUrl,
-				width: defaultSocialImage.width,
-				height: defaultSocialImage.height,
-				alt: defaultSocialImage.alt,
+				url: socialImagePath,
+				width: socialImage.width,
+				height: socialImage.height,
 			},
 		],
 	},
 	twitter: {
-		card: "summary_large_image",
-		images: defaultSocialImage.absoluteUrl,
+		card: 'summary_large_image',
+		images: socialImagePath,
 	},
 	robots: {
 		index: true,
 		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-			"max-video-preview": -1,
-			"max-image-preview": "large",
-			"max-snippet": -1,
-		},
 	},
 	alternates: {
-		canonical: productionBaseURL,
+		canonical: dynamicBaseURL,
 	},
-};
+}
 
 export const viewport: Viewport = {
-	width: "device-width",
+	width: 'device-width',
 	initialScale: 1,
-};
+}
 
-export default function RootLayout({
-	children,
-}: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html
 			lang="en-GB"
 			className={clsx(
-				"bg-white text-black",
-				"dark:bg-black dark:text-white",
+				'bg-white text-black text-lg', //
 				GeistSans.variable,
 				GeistMono.variable,
 			)}
@@ -100,5 +71,5 @@ export default function RootLayout({
 				<Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
 			</body>
 		</html>
-	);
+	)
 }
