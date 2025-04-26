@@ -3,7 +3,7 @@ import StyledLink from '@/components/StyledLink'
 import { september, tags } from '@/library/constants'
 import { createDate } from '@/library/utilities'
 import type { Article } from '@/types'
-import featuredImage from '@public/images/adding-a-simple-analytics-badge-to-a-next-js-site.png'
+import featuredImage from '../../../../public/images/adding-a-simple-analytics-badge-to-a-next-js-site.png'
 
 export const addingSimpleAnalytics: Article = {
 	publishedAt: createDate(16, september, 2024),
