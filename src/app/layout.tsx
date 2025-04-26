@@ -2,14 +2,15 @@ import Menu from '@/components/Menu'
 import { defaultMetaDescription, defaultMetaTitle, siteName } from '@/library/constants/definitions/metadata'
 import { dynamicBaseURL, productionBaseURL } from '@/library/environment'
 import clsx from 'clsx'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
 import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import '@/library/globals.tailwind.css'
 import Footer from '@/components/Footer'
 import socialImage from '@public/images/array-of-sunshine-social.png'
 import Script from 'next/script'
 import type { ReactNode } from 'react'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const socialImagePath = '/images/array-of-sunshine-social.png'
 
@@ -59,8 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			lang="en-GB"
 			className={clsx(
 				'bg-white text-black text-lg', //
-				GeistSans.variable,
-				GeistMono.variable,
+				inter.className,
 			)}
 			suppressHydrationWarning
 		>
