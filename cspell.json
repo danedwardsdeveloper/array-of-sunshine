@@ -1,13 +1,9 @@
 {
-  "ignorePaths": [
-    "pnpm-lock.yaml",
-    ".dockerignore",
-    ".gitignore",
-    "Dockerfile"
-  ],
-  "words": [
-    "apos",
-    "Deezer",
-    "simpleanalyticscdn"
-  ]
+	"ignorePaths": [
+		"pnpm-lock.yaml",
+		".dockerignore",
+		".gitignore",
+		"Dockerfile"
+	],
+	"words": ["apos", "Deezer", "simpleanalyticscdn"]
 }

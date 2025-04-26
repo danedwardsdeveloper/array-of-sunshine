@@ -1,0 +1,55 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"noConsole": "warn",
+				"noExplicitAny": "warn",
+				"noDoubleEquals": "warn",
+				"noEmptyInterface": "warn",
+				"noImplicitAnyLet": "warn",
+				"noPrototypeBuiltins": "warn"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "warn",
+				"noUnusedVariables": "warn",
+				"useHookAtTopLevel": "warn",
+				"noUndeclaredVariables": "warn",
+				"noUnusedImports": "warn"
+			},
+			"a11y": {
+				"useAltText": "warn",
+				"useKeyWithClickEvents": "warn",
+				"useValidAnchor": "warn"
+			},
+			"style": {
+				"noNonNullAssertion": "info",
+				"useConst": "warn"
+			},
+			"nursery": {
+				"noEnum": "error"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "double",
+			"trailingCommas": "all",
+			"semicolons": "asNeeded",
+			"arrowParentheses": "always",
+			"lineWidth": 140,
+			"indentWidth": 2,
+			"indentStyle": "tab"
+		}
+	},
+	"files": {
+		"ignore": ["node_modules", ".next", "public", "**/*.tailwind.css"]
+	}
+}
