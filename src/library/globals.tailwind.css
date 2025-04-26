@@ -28,30 +28,34 @@ input[type='email'] {
   appearance: none;
 }
 
-article h2 {
+.article-content h2 {
   @apply mb-2 mt-6 text-xl font-medium tracking-tight;
 }
 
-article h3 {
+.article-content h3 {
   @apply mb-2 mt-6 text-lg font-medium tracking-tight;
 }
 
-article p {
+.article-content p {
   @apply mt-2 mb-8 text-neutral-800 dark:text-neutral-200;
 }
 
-article code:not([data-component='CodeBlock'] code) {
-  @apply text-sm border  border-gray-200 bg-gray-100 text-black rounded px-2 py-0.5 font-mono break-words;
+.article-content code:not([data-component='CodeBlock'] code) {
+  @apply border  border-gray-200 bg-gray-100 text-black rounded px-2 py-0.5 font-mono break-words;
 }
 
-article ul {
+.article-content ul {
   @apply list-disc pl-6 my-6;
 }
 
-article ol {
+.article-content ol {
   @apply list-decimal pl-6 my-6;
 }
 
-article li {
+.article-content li {
   @apply mb-4;
+}
+
+.call-out-green {
+  @apply bg-green-100 rounded p-2 border-2 border-green-200;
 }
